@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>查询任务说明</title>
+<style type="text/css">
+<!--
+#Layer1 {
+	position:absolute;
+	width:839px;
+	height:298px;
+	z-index:1;
+	left: 271px;
+	top: 17px;
+}
+#Layer2 {
+	position:absolute;
+	width:834px;
+	height:43px;
+	z-index:1;
+}
+.STYLE1 {
+	font-family: "宋体";
+	font-size: 36px;
+	color: #000000;
+}
+.STYLE2 {
+	font-size: 36px;
+	font-family: "Adobe 楷体 Std R";
+	color: #FF0000;
+}
+.ID{
+	font-size: 36px;
+	font-family: "Adobe 楷体 Std R";
+	color: #FF0000;
+}
+#Layer3 {
+	position:absolute;
+	width:471px;
+	height:42px;
+	z-index:2;
+	left: 2px;
+	top: 49px;
+}
+#Layer4 {
+	position:absolute;
+	width:831px;
+	height:49px;
+	z-index:2;
+	top: 48px;
+}
+.STYLE4 {
+	font-family: "宋体";
+	font-size: 36px;
+}
+#Layer5 {
+	position: absolute;
+	width: 92px;
+	height: 41px;
+	z-index: 3;
+	top: 189px;
+	left: 593px;
+}
+-->
+</style>
+<script type="text/javascript" src="../conf/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../conf/jquery-min.js"></script>
+<script>
+function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]); return null;
+    }
+$(function(){
+	var tid = getQueryString('id');
+	tid = parseInt(tid) + 1;
+	$(".ID").text(tid.toString() + ".");
+});
+</script>
+</head>
+
+<body>
+<div id="Layer1">
+  <div id="Layer2">
+    <label><span class="STYLE1">查询词:</span><span class="ID"></span><span class="STYLE2">耐克篮球鞋</span></label>
+  </div>
+  
+  <div id="Layer4">
+    <label><span class="STYLE4">查询目标:</span><span class="STYLE2">查找三张耐克篮球鞋的图片</span></label>
+  </div>
+  <div id="Layer5">
+    <form id="form1" name="form1" method="post" action="../pages/page_108.html">
+      <input type="submit" name="Submit" value="开始查询" />
+    </form>
+  </div>
+</div>
+</body>
+</html>
