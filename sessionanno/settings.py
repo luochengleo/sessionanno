@@ -13,6 +13,13 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
+# from mongoengine import connect
+# DBNAME = 'annodb'
+# AUTH_USER_MODEL = 'mongo_auth.MongoUser'
+# MONGOENGINE_USER_DOCUMENT = 'mongoengine.django.auth.User'
+
+# connect('annodb',host = 'localhost',port=27017,username = 'root',password = '')
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
@@ -32,6 +39,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
+    # 'mongoengine.django.mongo_auth',
+
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -63,6 +72,21 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# MONGOENGINE_USER_DOCUMENT = 'mongoengine.django.auth.User'
+# SESSION_ENGINE = 'mongoengine.django.sessions'
+# SESSION_SERIALIZER = 'mongoengine.django.sessions.BSONSerializer'
+#
+# DATABASES = {
+# 'default': {
+#         'ENGINE': 'django.db.backends.dummy'
+#     }
+# }
+#
+# AUTHENTICATION_BACKENDS = (
+#     'mongoengine.django.auth.MongoEngineBackend',
+# )
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
