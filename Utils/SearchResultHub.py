@@ -1,3 +1,4 @@
+#coding=utf8
 __author__ = 'cheng'
 
 from anno.models import *
@@ -6,7 +7,7 @@ from Utils.SearchResultPageParser import SearchResultPageParser
 
 
 class SearchResultHub:
-    def __init__():
+    def __init__(self):
         pass
 
     def getResult(self, query, beginIndex, number):
@@ -25,6 +26,15 @@ class SearchResultHub:
                     results.append(r)
             count = 0
             for r in results:
+                count +=1
+                robj = SearchResult(query= query, rank = count,content = r)
+                robj.save()
+            return self.getResult(query,beginIndex,number)
+
+    def test(self):
+        self.getResult('清华大学',1,10)
+
+
 
 
 
