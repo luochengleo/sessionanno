@@ -18,8 +18,15 @@ class SearchResultHub:
                 return []
         else:
             src = SearchResultCrawler()
+            srpp = SearchResultPageParser()
             results = list()
-            for
+            for page in range(1, 11, 1):
+                for r in srpp.parse(src.crawl(query, page)):
+                    results.append(r)
+            count = 0
+            for r in results:
+
+
 
 
 
