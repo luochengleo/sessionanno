@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ad33a32-f262-4a2c-926d-df1c905d6b36" name="Default" comment="Modify settings.py  set to sqlite">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Utils/SearchResultHub.py" afterPath="$PROJECT_DIR$/Utils/SearchResultHub.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="sessionanno.iws" />
@@ -626,7 +625,11 @@
       <created>1416033828094</created>
       <updated>1416033828094</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Modify settings.py  set to sqlite">
+      <created>1416034127691</created>
+      <updated>1416034127691</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
