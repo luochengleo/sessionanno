@@ -11,28 +11,43 @@ class SearchResultHub:
         pass
 
     def getResult(self, query, beginIndex, number):
+        print 'finding in database'
+
         sr_list = SearchResult.objects.filter(query=query)
-        if len(sr_list) > 0:
-            if beginIndex + number < len(sr_list):
-                return sr_list[beginIndex, beginIndex + number]
+        print len(sr_list)
+
+        if len(sr_list)>0:
+            if (beginIndex + number < len(sr_list)) and (len(sr_list)>100):
+                print 'find result'
+                return sr_list[beginIndex: beginIndex + number]
             else:
-                return []
+                print  'insufficient results',len(sr_list)-beginIndex
+                return sr_list[beginIndex:]
+
         else:
+            print 'begin crawling'
             src = SearchResultCrawler()
             srpp = SearchResultPageParser()
             results = list()
-            for page in range(1, 11, 1):
+            for page in range(1, 3, 1):
+                print 'crawling page', page
                 for r in srpp.parse(src.crawl(query, page)):
                     results.append(r)
             count = 0
+            print 'find ',len(results) ,' results'
             for r in results:
                 count +=1
+
                 robj = SearchResult(query= query, rank = count,content = r)
+                print query,count,r
                 robj.save()
             return self.getResult(query,beginIndex,number)
 
     def test(self):
-        self.getResult('清华大学',1,10)
+        for item in self.getResult(query='清华大学',beginIndex=1,number=10):
+            print '--------------------'
+            print item.rank
+            print '--------------------'
 
 
 

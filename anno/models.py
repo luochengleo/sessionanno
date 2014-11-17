@@ -27,7 +27,8 @@ class Query(models.Model):
     task = models.ManyToManyField(Task)
 
 class SearchResult(models.Model):
-    query = models.ForeignKey(Query)
+    # query = models.ForeignKey(Query)
+    query = models.CharField(max_length=100)
     rank = models.IntegerField()
     content = models.CharField(max_length=2000)
 
