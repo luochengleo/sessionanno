@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9ad33a32-f262-4a2c-926d-df1c905d6b36" name="Default" comment="Modify settings.py  set to sqlite">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sessionanno/urls.py" afterPath="$PROJECT_DIR$/sessionanno/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anno/views.py" afterPath="$PROJECT_DIR$/anno/views.py" />
-    </list>
+    <list default="true" id="9ad33a32-f262-4a2c-926d-df1c905d6b36" name="Default" comment="Modify settings.py  set to sqlite" />
     <ignored path="sessionanno.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -96,10 +92,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="out.html" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="out.html" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/templates/out.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.76065576" vertical-offset="66510" max-vertical-offset="68544">
+                <state vertical-scroll-proportion="-8.923077" vertical-offset="66510" max-vertical-offset="68544">
                   <caret line="4048" column="13" selection-start-line="4048" selection-start-column="13" selection-end-line="4048" selection-end-column="13" />
                   <folding>
                     <element signature="e#1127#1292#0#HTML" expanded="false" />
@@ -133,11 +129,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/anno/views.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="370" max-vertical-offset="714">
-                  <caret line="26" column="4" selection-start-line="26" selection-start-column="6" selection-end-line="28" selection-end-column="18" />
+                <state vertical-scroll-proportion="0.70348835" vertical-offset="370" max-vertical-offset="714">
+                  <caret line="36" column="29" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
                   <folding>
                     <element signature="e#14#49#0" expanded="true" />
                   </folding>
@@ -690,7 +686,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32866043" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24717286" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17447495" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17447495" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -1025,16 +1021,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Utils/SearchResultHub.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="26" max-vertical-offset="1139">
-          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
-          <folding>
-            <element signature="e#35#60#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sessionanno/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="179" max-vertical-offset="459">
@@ -1045,19 +1031,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/anno/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="370" max-vertical-offset="714">
-          <caret line="26" column="4" selection-start-line="26" selection-start-column="6" selection-end-line="28" selection-end-column="18" />
-          <folding>
-            <element signature="e#14#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/out.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.76065576" vertical-offset="66510" max-vertical-offset="68544">
+        <state vertical-scroll-proportion="-8.923077" vertical-offset="66510" max-vertical-offset="68544">
           <caret line="4048" column="13" selection-start-line="4048" selection-start-column="13" selection-end-line="4048" selection-end-column="13" />
           <folding>
             <element signature="e#1127#1292#0#HTML" expanded="false" />
@@ -1074,6 +1050,26 @@
             <marker date="1416305048000" expanded="true" signature="79369:79440" placeholder="{...}" />
             <marker date="1416305048000" expanded="true" signature="81778:81815" placeholder="{...}" />
             <marker date="1416305048000" expanded="true" signature="86488:86561" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Utils/SearchResultHub.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="26" max-vertical-offset="1139">
+          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+          <folding>
+            <element signature="e#35#60#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/anno/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.70348835" vertical-offset="370" max-vertical-offset="714">
+          <caret line="36" column="29" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
+          <folding>
+            <element signature="e#14#49#0" expanded="true" />
           </folding>
         </state>
       </provider>
