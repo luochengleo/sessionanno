@@ -3,6 +3,9 @@ from django.contrib import admin
 
 from anno.views import hello
 from anno.views import current_datetime
+from anno.views import train
+from anno.views import search
+from anno.views import validate
 
 urlpatterns = patterns('',
     # Examples:
@@ -11,4 +14,9 @@ urlpatterns = patterns('',
     # url(r'^admin/', include(admin.site.urls)),
     (r'^hello/$',hello),
     (r'^time/',current_datetime),
+    (r'^search/(\d{1,2})/(.*?)/(\d{1,2})/$',search),
+    (r'^train/(\d{1,2})/$',train),
+    (r'^validate/(\d{1,2})/$',validate),
+
+
 )
