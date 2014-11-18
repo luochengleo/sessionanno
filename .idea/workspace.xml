@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9ad33a32-f262-4a2c-926d-df1c905d6b36" name="Default" comment="Modify settings.py  set to sqlite" />
+    <list default="true" id="9ad33a32-f262-4a2c-926d-df1c905d6b36" name="Default" comment="Modify settings.py  set to sqlite">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/out.html" afterPath="$PROJECT_DIR$/templates/out.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sessionanno/settings.py" afterPath="$PROJECT_DIR$/sessionanno/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="sessionanno.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,149 +32,125 @@
     <favorites_list name="sessionanno" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.8590022">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="SearchResultPageParser.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Utils/SearchResultPageParser.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="629">
-                  <caret line="11" column="21" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="21" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/anno/__init__.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="admin.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/anno/admin.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="153">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="tests.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/anno/tests.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
-                  <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/sessionanno/urls.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="115" max-vertical-offset="459">
-                  <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-                  <folding>
-                    <element signature="e#0#51#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/sessionanno/settings.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-2.9629629" vertical-offset="367" max-vertical-offset="1938">
-                  <caret line="31" column="5" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="5" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="out.html" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/templates/out.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-8.923077" vertical-offset="66510" max-vertical-offset="68544">
-                  <caret line="4048" column="13" selection-start-line="4048" selection-start-column="13" selection-end-line="4048" selection-end-column="13" />
-                  <folding>
-                    <element signature="e#1127#1292#0#HTML" expanded="false" />
-                    <element signature="tag#dl#0;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
-                    <element signature="tag#div#0;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
-                    <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                    <element signature="tag#style#0;tag#div#0;tag#div#0;tag#div#0;tag#div#1;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
-                    <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#img#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#img#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                    <marker date="1416305048000" expanded="true" signature="2120:2173" placeholder="{...}" />
-                    <marker date="1416305048000" expanded="true" signature="21520:21573" placeholder="{...}" />
-                    <marker date="1416305048000" expanded="true" signature="79369:79440" placeholder="{...}" />
-                    <marker date="1416305048000" expanded="true" signature="81778:81815" placeholder="{...}" />
-                    <marker date="1416305048000" expanded="true" signature="86488:86561" placeholder="{...}" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="SearchResultHub.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Utils/SearchResultHub.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="128" max-vertical-offset="1139">
-                  <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
-                  <folding>
-                    <element signature="e#35#60#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/anno/views.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.70348835" vertical-offset="370" max-vertical-offset="714">
-                  <caret line="36" column="29" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
-                  <folding>
-                    <element signature="e#14#49#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="manage.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/manage.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/sessionanno/urls.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="2.7333333" vertical-offset="207" max-vertical-offset="459">
-                  <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
-                  <folding>
-                    <element signature="e#0#51#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file leaf-file-name="SearchResultPageParser.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Utils/SearchResultPageParser.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="629">
+              <caret line="11" column="21" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sessionanno/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="115" max-vertical-offset="459">
+              <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+              <folding>
+                <element signature="e#0#51#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/anno/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/anno/admin.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="153">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tests.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/anno/tests.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
+              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sessionanno/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.2592592" vertical-offset="0" max-vertical-offset="2023">
+              <caret line="4" column="7" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="out.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/out.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.65299684" vertical-offset="68405" max-vertical-offset="70652">
+              <caret line="4036" column="49" selection-start-line="4036" selection-start-column="49" selection-end-line="4036" selection-end-column="49" />
+              <folding>
+                <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1416322589000" expanded="true" signature="2136:2189" placeholder="{...}" />
+                <marker date="1416322589000" expanded="true" signature="21728:21781" placeholder="{...}" />
+                <marker date="1416322589000" expanded="true" signature="80041:80112" placeholder="{...}" />
+                <marker date="1416322589000" expanded="true" signature="82466:82503" placeholder="{...}" />
+                <marker date="1416322589000" expanded="true" signature="87176:87249" placeholder="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/anno/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="370" max-vertical-offset="714">
+              <caret line="36" column="29" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
+              <folding>
+                <element signature="e#14#49#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="manage.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manage.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SearchResultHub.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Utils/SearchResultHub.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="128" max-vertical-offset="1139">
+              <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+              <folding>
+                <element signature="e#35#60#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -201,7 +182,6 @@
         <option value="dbtable:/fd33b56c/80bbe7c8-dc37-4f46-98e9-ec06076463db/..django_session" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/anno/tests.py" />
-        <option value="$PROJECT_DIR$/sessionanno/settings.py" />
         <option value="dbtable:/fd33b56c/80bbe7c8-dc37-4f46-98e9-ec06076463db/..anno_query" />
         <option value="dbtable:/fd33b56c/80bbe7c8-dc37-4f46-98e9-ec06076463db/..anno_task" />
         <option value="$PROJECT_DIR$/anno/models.py" />
@@ -209,6 +189,7 @@
         <option value="$PROJECT_DIR$/sessionanno/urls.py" />
         <option value="$PROJECT_DIR$/templates/templates.html" />
         <option value="$PROJECT_DIR$/anno/views.py" />
+        <option value="$PROJECT_DIR$/sessionanno/settings.py" />
         <option value="$PROJECT_DIR$/templates/out.html" />
       </list>
     </option>
@@ -339,7 +320,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../usersatisfaction" />
-    <property name="options.lastSelected" value="preferences.pluginManager" />
+    <property name="options.lastSelected" value="preferences.keymap" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
@@ -678,7 +659,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -690,7 +671,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32503662" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32503662" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1669107" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1005,51 +986,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="344">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sessionanno/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.9629629" vertical-offset="367" max-vertical-offset="1938">
-          <caret line="31" column="5" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sessionanno/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="179" max-vertical-offset="459">
           <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/out.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.923077" vertical-offset="66510" max-vertical-offset="68544">
-          <caret line="4048" column="13" selection-start-line="4048" selection-start-column="13" selection-end-line="4048" selection-end-column="13" />
-          <folding>
-            <element signature="e#1127#1292#0#HTML" expanded="false" />
-            <element signature="tag#dl#0;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
-            <element signature="tag#div#0;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="tag#style#0;tag#div#0;tag#div#0;tag#div#0;tag#div#1;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1416305048000" expanded="true" signature="2120:2173" placeholder="{...}" />
-            <marker date="1416305048000" expanded="true" signature="21520:21573" placeholder="{...}" />
-            <marker date="1416305048000" expanded="true" signature="79369:79440" placeholder="{...}" />
-            <marker date="1416305048000" expanded="true" signature="81778:81815" placeholder="{...}" />
-            <marker date="1416305048000" expanded="true" signature="86488:86561" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -1066,10 +1008,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/anno/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.70348835" vertical-offset="370" max-vertical-offset="714">
+        <state vertical-scroll-proportion="0.0" vertical-offset="370" max-vertical-offset="714">
           <caret line="36" column="29" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
           <folding>
             <element signature="e#14#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="344">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sessionanno/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.2592592" vertical-offset="0" max-vertical-offset="2023">
+          <caret line="4" column="7" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/out.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.65299684" vertical-offset="68405" max-vertical-offset="70652">
+          <caret line="4036" column="49" selection-start-line="4036" selection-start-column="49" selection-end-line="4036" selection-end-column="49" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1416322589000" expanded="true" signature="2136:2189" placeholder="{...}" />
+            <marker date="1416322589000" expanded="true" signature="21728:21781" placeholder="{...}" />
+            <marker date="1416322589000" expanded="true" signature="80041:80112" placeholder="{...}" />
+            <marker date="1416322589000" expanded="true" signature="82466:82503" placeholder="{...}" />
+            <marker date="1416322589000" expanded="true" signature="87176:87249" placeholder="{...}" />
           </folding>
         </state>
       </provider>
