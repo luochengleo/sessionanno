@@ -42,8 +42,7 @@ INSTALLED_APPS = (
     # 'mongoengine.django.mongo_auth',
 
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
+    'django.contrib.sessions', 'django.contrib.messages',
     'django.contrib.staticfiles',
     'anno',
 )
