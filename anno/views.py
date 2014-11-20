@@ -22,9 +22,13 @@ def current_datetime(request):
 def search(request,taskid,query,pageid):
     print 'view search',query
     srh = SearchResultHub()
-
-    # query = urllib.unquote(query)
+    query = urllib.unquote(query)
     print 'view search after unquote',query
+
+    # query = query.decode('cp936','ignore').decode('utf8')
+    print 'after decode',query
+
+    # print urllib.quote(query)
     results = srh.getResult(query,10*int(pageid)+1,10)
 
     t = Template(open('templates/out.html').read())
