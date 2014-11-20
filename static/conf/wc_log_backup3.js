@@ -2,7 +2,7 @@
  * @author Wang Chao
  * v. 0.0.1
  */
- 
+
 var current_page_url = window.location.href;
 var current_site = get_set(current_page_url);
 var server_site = current_site;
@@ -15,7 +15,7 @@ var mouse_tracking_group_limit = 100;
 var mouse_tracking_baseline_stamp = (new Date()).getTime();
 var mouse_tracking_time_stamp = mouse_tracking_baseline_stamp;
 var mouse_tracking_pos_stamp = { 'x': 0, 'y': 0 };
-var mouse_tracking_scroll_stamp = {'scrollX':0, 'scrollY':0};
+var mouse_tracking_scroll_stamp = {'scrollX': 0, 'scrollY': 0};
 var mouse_tracking_least_move_interval = 20;//ms
 var mouse_tracking_least_move_distance = 20;//px 
 
@@ -27,24 +27,23 @@ document.onmousemove = log_mouse_tracking;
 send_mouse_info(formInfo("BEGIN_SEARCH", ""));
 
 var isTargetWindow = true;
-$(window).focus(function() {
-   isTargetWindow = true;
-   send_mouse_info(formInfo("JUMP_IN", ""));
-   mouse_tracking_time_stamp = (new Date()).getTime();
+$(window).focus(function () {
+    isTargetWindow = true;
+    send_mouse_info(formInfo("JUMP_IN", ""));
+    mouse_tracking_time_stamp = (new Date()).getTime();
 });
 
-$(window).blur(function() {
-   if(isTargetWindow)
-   {
-		send_mouse_info(formInfo("JUMP_OUT", ""));
-		isTargetWindow = false;
-   }
+$(window).blur(function () {
+    if (isTargetWindow) {
+        send_mouse_info(formInfo("JUMP_OUT", ""));
+        isTargetWindow = false;
+    }
 });
 
-function get_set(url_str){
+function get_set(url_str) {
     var ret = "10.0.17.201";
     var site_re = /http:\/\/([\w\.]+):8080\//;
-    if(site_re.test(url_str)){
+    if (site_re.test(url_str)) {
         ret = RegExp.$1;
     }
     return ret;
@@ -63,33 +62,33 @@ $(window).scroll(function () {
     send_mouse_info(formInfo("SCROLL", message));
 });
 
-window.onbeforeunload = function (e){
+window.onbeforeunload = function (e) {
     mouse_tracking_count = mouse_tracking_group_limit;
     send_mouse_info(formInfo("SEARCH_END", ""));
     return '完成1个查询任务,请再接再厉!';
-	//return ''
+    //return ''
 };
 
-$(function(){
+$(function () {
     $('.WCExamButton')
-        .css( {backgroundPosition: "0 0"} )
-        .mouseover(function(){
-            if($(this).get(0).disabled == false){
-                $(this).stop().animate({backgroundPosition:"(0 -250px)"}, {duration:500})
+        .css({backgroundPosition: "0 0"})
+        .mouseover(function () {
+            if ($(this).get(0).disabled == false) {
+                $(this).stop().animate({backgroundPosition: "(0 -250px)"}, {duration: 500})
             }
         })
-        .mouseout(function(){
-            if($(this).get(0).disabled == false){
-                $(this).stop().animate({backgroundPosition:"(0 0)"}, {duration:500})
+        .mouseout(function () {
+            if ($(this).get(0).disabled == false) {
+                $(this).stop().animate({backgroundPosition: "(0 0)"}, {duration: 500})
             }
         })
-        .click(function(){
-            if($(this).get(0).disabled == false){
-                if(satisfy_num < satisfy_limit){
-                    $(this).removeClass("button green").addClass( "button gray");
-                    $(this).removeClass("button orange").addClass( "button gray");
+        .click(function () {
+            if ($(this).get(0).disabled == false) {
+                if (satisfy_num < satisfy_limit) {
+                    $(this).removeClass("button green").addClass("button gray");
+                    $(this).removeClass("button orange").addClass("button gray");
                     examining_message($(this).get(0));
-                    if(check_state == 4){
+                    if (check_state == 4) {
                         satisfy_num += 1;
                     }
                 }
@@ -98,41 +97,41 @@ $(function(){
 });
 
 
-$(function(){
+$(function () {
     $('a')
-        .hover(function(){
+        .hover(function () {
             base_link_message($(this).get(0), "HOVER", "anchor");
         })
-        
+
 });
 
-$(function(){
+$(function () {
     $('a')
-        .click(function(){
+        .click(function () {
             base_link_message($(this).get(0), "CLICK", "anchor");
         })
-        
+
 });
 
-$(function(){
+$(function () {
     $('img')
-        .hover(function(){
+        .hover(function () {
             base_link_message($(this).get(0), "HOVER", "image");
         })
 });
 
-$(function(){
+$(function () {
     $('img')
-        .click(function(){
+        .click(function () {
             base_link_message($(this).get(0), "CLICK", "image");
         })
 });
 
-function show_display_coordinate(){
+function show_display_coordinate() {
     wc_result_vec = $('.WCResult');
     var info = "";
-    for(var i = 0; i < wc_result_vec.size(); i ++){
-        info += "result=" + i ;
+    for (var i = 0; i < wc_result_vec.size(); i++) {
+        info += "result=" + i;
         info += "\tx=" + wc_result_vec.get(i).offsetLeft;
         info += "\ty=" + wc_result_vec.get(i).offsetTop;
         info += "\twidth=" + wc_result_vec.get(i).offsetWidth;
@@ -145,63 +144,63 @@ function show_display_coordinate(){
     alert(info);
 }
 
-function display_examining_button(){
-    if(check_state == 0){
+function display_examining_button() {
+    if (check_state == 0) {
         //show_display_coordinate();
         check_state = 1;//first check
-		client_time = (new Date()).getTime();
+        client_time = (new Date()).getTime();
         //$('.WCExamButton').addClass( "button green" );
         $('.WCOverButton').text("请标记您认为检验过的结果");
-		
-		resultDisplayList = ex_init(click_list); //return the result sequence
-		
-		send_mouse_info(formInfo("OVER", "check_state=" + check_state + '\tclient_time=' + client_time + '\texam_list=' + resultDisplayList));
 
-    }else if(check_state == 1){
-	
-		$('.headsearch,.header').css("z-index","101")
-	
+        resultDisplayList = ex_init(click_list); //return the result sequence
+
+        send_mouse_info(formInfo("OVER", "check_state=" + check_state + '\tclient_time=' + client_time + '\texam_list=' + resultDisplayList));
+
+    } else if (check_state == 1) {
+
+        $('.headsearch,.header').css("z-index", "101")
+
         check_state = 2;//second check
         $('.WCOverButton').text("下一步");
         send_mouse_info(formInfo("OVER", "check_state=" + check_state));
         wc_reveal();
-    }else if(check_state == 2){
+    } else if (check_state == 2) {
         check_state = 3;//second check
         var satisfy_score = $('#wcstar').raty('score');
         send_mouse_info(formInfo("SATISFY", "score=" + satisfy_score));
         $('.WCOverButton').text("请再次确认您检验过的结果");
         wc_but_vec = $('.WCExamButton');
-		//console.log(wc_but_vec);
-        wc_but_vec.removeClass("button gray").addClass( "button green" );
+        //console.log(wc_but_vec);
+        wc_but_vec.removeClass("button gray").addClass("button green");
         //get Check List
         checkList = getCheckList();
-		//console.log(wc_but_vec.size());
-        for(var i = 0; i < wc_but_vec.size(); i ++){
-            if(checkList.indexOf(i) >= 0){
-				console.log(i);
+        //console.log(wc_but_vec.size());
+        for (var i = 0; i < wc_but_vec.size(); i++) {
+            if (checkList.indexOf(i) >= 0) {
+                console.log(i);
                 wc_but_vec.get(i).className = "WCExamButton";
                 send_mouse_info(formInfo("NOT_SHOW", "result=" + (i)));
             }
         }
         send_mouse_info(formInfo("OVER", "check_state=" + check_state));
-    }else if(check_state == 3){
+    } else if (check_state == 3) {
         check_state = 4;//satisfy result
         $('.WCOverButton').text("请标记您认为有帮助的结果,至多3个");
-        $('.WCExamButton').removeClass("button green").addClass( "button orange" );
-        $('.WCExamButton').removeClass("button gray").addClass( "button orange" );
+        $('.WCExamButton').removeClass("button green").addClass("button orange");
+        $('.WCExamButton').removeClass("button gray").addClass("button orange");
         $('.WCExamButton').text("有用");
-    }else if(check_state == 4){
-       nextQueryPage();//end
+    } else if (check_state == 4) {
+        nextQueryPage();//end
     }
 }
 
 
-function examining_message(exam_button_obj){
+function examining_message(exam_button_obj) {
     //exam_button_obj.disabled=true;
     var parent_obj = exam_button_obj.parentNode;
-    while(parent_obj != null){
+    while (parent_obj != null) {
         //alert(parent_obj.className);
-        if(parent_obj.className == "WCResult"){
+        if (parent_obj.className == "WCResult") {
             var message = "check_state=" + check_state + "\tresult=" + parent_obj.id;
             send_mouse_info(formInfo("EXAMINE", message));
             break;
@@ -210,23 +209,22 @@ function examining_message(exam_button_obj){
     }
 }
 
-function base_link_message(link_obj, action_info, target_info){
+function base_link_message(link_obj, action_info, target_info) {
     var parent_obj = link_obj.parentNode;
-    while(parent_obj != null){
-        if(parent_obj.className == "WCResult"){
+    while (parent_obj != null) {
+        if (parent_obj.className == "WCResult") {
             var message = "type=" + target_info + "\tresult=" + parent_obj.id;
-			
-			if(action_info == 'CLICK' && check_state == 0){
-				temp_id = parent_obj.id;
-				if(click_list.indexOf(temp_id) == -1)
-				{
-					click_list.push(temp_id);
-				}
-			}
-			
-            if(link_obj.href === undefined){
+
+            if (action_info == 'CLICK' && check_state == 0) {
+                temp_id = parent_obj.id;
+                if (click_list.indexOf(temp_id) == -1) {
+                    click_list.push(temp_id);
+                }
+            }
+
+            if (link_obj.href === undefined) {
                 message = message + "\tsrc=" + link_obj.src;
-            }else{
+            } else {
                 message = message + "\tsrc=" + link_obj.href;
             }
             send_mouse_info(formInfo(action_info, message));
@@ -237,34 +235,33 @@ function base_link_message(link_obj, action_info, target_info){
 }
 
 
-
 //mouse tracking
-function log_mouse_tracking(ev){
+function log_mouse_tracking(ev) {
     var new_time_stamp = (new Date()).getTime();
     var cur_pos = getMousePos(ev);
     var time_interval = new_time_stamp - mouse_tracking_time_stamp;
     var time_start = mouse_tracking_time_stamp - mouse_tracking_baseline_stamp;
     var time_end = new_time_stamp - mouse_tracking_baseline_stamp;
     var abs_pos_distance = Math.abs(cur_pos.x - mouse_tracking_pos_stamp.x) + Math.abs(cur_pos.y - mouse_tracking_pos_stamp.y);
-    if(time_interval < mouse_tracking_least_move_interval || abs_pos_distance < mouse_tracking_least_move_distance){
+    if (time_interval < mouse_tracking_least_move_interval || abs_pos_distance < mouse_tracking_least_move_distance) {
         return;
     }
-    var info = "FROM\tx=" + mouse_tracking_pos_stamp.x + "\ty=" + mouse_tracking_pos_stamp.y + "\tTO\tx=" +cur_pos.x + "\ty=" + cur_pos.y + "\ttime=" + time_interval + "\tstart=" + time_start + "\tend="+ time_end;
+    var info = "FROM\tx=" + mouse_tracking_pos_stamp.x + "\ty=" + mouse_tracking_pos_stamp.y + "\tTO\tx=" + cur_pos.x + "\ty=" + cur_pos.y + "\ttime=" + time_interval + "\tstart=" + time_start + "\tend=" + time_end;
     send_mouse_info(formInfo("MOUSE_MOVE", info));
     mouse_tracking_time_stamp = new_time_stamp;
     mouse_tracking_pos_stamp = cur_pos;
 }
 
-function time_info(){
+function time_info() {
     var new_time_stamp = (new Date()).getTime();
     var time_point = new_time_stamp - mouse_tracking_baseline_stamp;
     return time_point;
 }
 
-function send_mouse_info(info){
+function send_mouse_info(info) {
     mouse_tracking_info = mouse_tracking_info + info;
-    mouse_tracking_count ++;
-    if(mouse_tracking_count >= mouse_tracking_group_limit){
+    mouse_tracking_count++;
+    if (mouse_tracking_count >= mouse_tracking_group_limit) {
         ajax_log_message(mouse_tracking_info);
         mouse_tracking_count = 0;
         mouse_tracking_info = "";
@@ -285,20 +282,20 @@ function getMousePos(ev) {
     return { 'x': x, 'y': y };
 }
 
-function formInfo(action_info, log_str){
+function formInfo(action_info, log_str) {
     var time_str = time_info();
-    var info =  "TIME=" + time_str + "\t" + "USER=" + studentID + "\t" + "QUERY=" + currentQueryID + "\t" + "ACTION=" + action_info + "\t" + "INFO:\t" + log_str + "\n";
+    var info = "TIME=" + time_str + "\t" + "USER=" + studentID + "\t" + "QUERY=" + currentQueryID + "\t" + "ACTION=" + action_info + "\t" + "INFO:\t" + log_str + "\n";
     return info;
 }
 
-function ajax_log_message(log_str){
+function ajax_log_message(log_str) {
     var encode_str = encodeURIComponent(log_str);
     //alert(encode_str + "\n");
     var log_url = "http://" + server_site + ":8080/PlusLogService";
     $.ajax({
-        type:'POST',
-        url:log_url,
-        data:{message:encode_str},
+        type: 'POST',
+        url: log_url,
+        data: {message: encode_str},
         complete: function (jqXHR, textStatus) {
             //alert(textStatus + "----" + jqXHR.status + "----" + jqXHR.readyState);
         }
