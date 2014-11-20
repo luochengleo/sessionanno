@@ -11,7 +11,7 @@ class SearchResultHub:
         pass
 
     def getResult(self, query, beginIndex, number):
-        print 'finding in database'
+        print 'searching in database'
 
         sr_list = SearchResult.objects.filter(query=query)
         print len(sr_list)

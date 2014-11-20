@@ -8,6 +8,7 @@ from django.template import loader
 from django import template
 
 import sys
+import urllib
 reload(sys)
 from django.template import Template
 def hello(request):
@@ -19,7 +20,11 @@ def current_datetime(request):
     return HttpResponse(html)
 
 def search(request,taskid,query,pageid):
+    print 'view search',query
     srh = SearchResultHub()
+
+    # query = urllib.unquote(query)
+    print 'view search after unquote',query
     results = srh.getResult(query,10*int(pageid)+1,10)
 
     t = Template(open('templates/out.html').read())
