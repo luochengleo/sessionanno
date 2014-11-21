@@ -18,6 +18,7 @@
     <script type="text/javascript">
         currentTaskID = "{{ taskid }}";
         currentQuery = "{{ query }}";
+        currentPageID = "{{ pageid }}";
         console.log(currentQuery);
         console.log(currentTaskID);
     </script>
@@ -4121,7 +4122,7 @@
             <span>{{ pageid }}</span>
         {% else %}
             <a
-                id="sougou_page_{{ i }}"
+                id="sogou_page_{{ i }}"
                 class="pagination"
                 href="/search/{{ taskid }}/{{ query }}/{{ forloop.counter }}/">{{ forloop.counter }}</a>
         {% endifequal %}

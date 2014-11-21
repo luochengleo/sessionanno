@@ -210,8 +210,10 @@ function examining_message(exam_button_obj) {
 function base_link_message(link_obj, action_info, target_info) {
     var parent_obj = link_obj.parentNode;
     while (parent_obj != null) {
-        if (parent_obj.className == "WCResult") {
-            var message = "type=" + target_info + "\tresult=" + parent_obj.id;
+        if (parent_obj.className == "rb") {
+            var rank = $(".rb").index(parent_obj);
+            var message = "type=" + target_info + "\tresult=" + parent_obj.id +
+                "\tpage=" + currentPageID + "\trank=" + rank;
 
             if (action_info == 'CLICK' && check_state == 0) {
                 temp_id = parent_obj.id;
@@ -324,6 +326,8 @@ $(function () {
     $("a.pagination").click(function() {
         console.log('pagination onclick!');
         var href = this.href;
+        var info = "FROM=sogou_page_" + currentPageID + "\tTO=" + this.id;
+        send_mouse_info(formInfo("GOTO_PAGE", info))
         sync_flush_log_message();
         window.onbeforeunload = null;
         location.href = href;
@@ -335,9 +339,12 @@ $(function () {
 $(function () {
    $("#searchForm").submit(function (e) {
        console.log('query reformulation happened!');
+       var newQuery = $("#upquery").val();
+       var info = "OLD_QUERY=" + currentQuery + "\tNEW_QUERY=" + newQuery;
+       send_mouse_info(formInfo("QUERY_REFORM", info));
        sync_flush_log_message();
        window.onbeforeunload = null;
-       location.href = "/search/"+currentTaskID+"/"+$("#upquery").val()+"/1/";
+       location.href = "/search/" + currentTaskID + "/" + newQuery + "/1/";
        e.preventDefault();
    });
 });
