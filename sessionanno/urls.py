@@ -7,7 +7,7 @@ from anno.views import train
 from anno.views import search
 from anno.views import validate
 from anno.views import login
-
+from anno.views import log
 
 urlpatterns = patterns('',
     # Examples:
@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     (r'^train/(\d{1,2})/$',train),
     (r'^validate/(\d{1,2})/$',validate),
     (r'^login/$',login),
+    (r'^LogService/', log)
 
 
 )

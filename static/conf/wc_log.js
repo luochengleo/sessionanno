@@ -21,7 +21,6 @@ var mouse_tracking_least_move_distance = 20;//px
 
 //for now there is no student id and query id
 studentID = 0;
-currentQueryID = 0;
 click_list = []
 
 //var page_change_id = setInterval(page_change, 3000);
@@ -44,7 +43,7 @@ $(window).blur(function () {
 });
 
 function get_set(url_str) {
-    var ret = "10.0.17.201";
+    var ret = "127.0.0.1";
     var site_re = /http:\/\/([\w\.]+):8080\//;
     if (site_re.test(url_str)) {
         ret = RegExp.$1;
@@ -283,14 +282,15 @@ function getMousePos(ev) {
 
 function formInfo(action_info, log_str) {
     var time_str = time_info();
-    var info = "TIME=" + time_str + "\t" + "USER=" + studentID + "\t" + "QUERY=" + currentQueryID + "\t" + "ACTION=" + action_info + "\t" + "INFO:\t" + log_str + "\n";
+    var info = "TIME=" + time_str + "\t" + "USER=" + studentID + "\t" + "TASK=" + currentTaskID + "\t" +
+        "QUERY=" + currentQuery + "\t" + "ACTION=" + action_info + "\t" + "INFO:\t" + log_str + "\n";
     return info;
 }
 
 function ajax_log_message(log_str) {
     var encode_str = encodeURIComponent(log_str);
     //alert(encode_str + "\n");
-    var log_url = "http://" + server_site + ":8080/PlusLogService";
+    var log_url = "http://" + server_site + ":8000/LogService/";
     $.ajax({
         type: 'POST',
         url: log_url,
@@ -300,3 +300,44 @@ function ajax_log_message(log_str) {
         }
     });
 }
+
+function sync_flush_log_message() {
+    var encode_str = encodeURIComponent(mouse_tracking_info);
+    var log_url = "http://" + server_site + ":8000/LogService/";
+    $.ajax({
+        type: 'POST',
+        url: log_url,
+        data: {message: encode_str},
+        async: false,
+        complete: function (jqXHR, textStatus) {
+            //alert(textStatus + "----" + jqXHR.status + "----" + jqXHR.readyState);
+            //should we reset onbeforeunload here?
+            console.log("synchronously flush mouse log!")
+        }
+    });
+    mouse_tracking_count = 0;
+    mouse_tracking_info = "";
+}
+
+
+$(function () {
+    $("a.pagination").click(function() {
+        console.log('pagination onclick!');
+        var href = this.href;
+        sync_flush_log_message();
+        window.onbeforeunload = null;
+        location.href = href;
+        return false;
+    });
+});
+
+
+$(function () {
+   $("#searchForm").submit(function (e) {
+       console.log('query reformulation happened!');
+       sync_flush_log_message();
+       window.onbeforeunload = null;
+       location.href = "/search/"+currentTaskID+"/"+$("#upquery").val()+"/1/";
+       e.preventDefault();
+   });
+});

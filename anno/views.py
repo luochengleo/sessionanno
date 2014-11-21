@@ -6,6 +6,8 @@ import datetime
 from Utils.SearchResultHub import SearchResultHub
 from django.template import loader
 from django import template
+from django.views.decorators.csrf import csrf_exempt
+from urllib import unquote
 
 import sys
 import urllib
@@ -32,7 +34,14 @@ def search(request,taskid,query,pageid):
     results = srh.getResult(query,10*int(pageid)+1,10)
 
     t = Template(open('templates/out.html').read())
-    c = template.Context({'resultlist': [r.content for r in results]})
+    next_pageid = ''
+    if int(pageid) < 9:
+        next_pageid = str(int(pageid)+1)
+    c = template.Context({'resultlist': [r.content for r in results],
+                          'taskid': taskid,
+                          'query': query,
+                          'pageid': pageid,
+                          'next_pageid': next_pageid})
     # fout = open('temp/test.html','w')
     # fout.write(t.render(c).decode('utf8','ignore').encode('utf8'))
     # fout.close()
@@ -47,3 +56,10 @@ def validate(request,taskid):
 
 def login(request):
     return HttpResponse(open('templates/login.html').read())
+
+@csrf_exempt
+def log(request):
+    print unquote(request.POST[u'message'])
+    #now I just print the log info for debugging
+    #TODO save logs into database
+    return HttpResponse('OK')
