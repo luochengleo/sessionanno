@@ -20,6 +20,7 @@ def current_datetime(request):
     return HttpResponse(html)
 
 def search(request,taskid,query,pageid):
+
     print 'view search',query
     srh = SearchResultHub()
     query = urllib.unquote(query)
@@ -46,4 +47,5 @@ def validate(request,taskid):
     return HttpResponse(html)
 
 def login(request):
+    print request.session.items()
     return HttpResponse(open('templates/login.html').read())
