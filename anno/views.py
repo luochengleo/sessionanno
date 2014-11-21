@@ -44,3 +44,6 @@ def train(request,userid):
 def validate(request,taskid):
     html = '<html><body> It is the '+taskid +' task. </body></html>'
     return HttpResponse(html)
+
+def login(request):
+    return HttpResponse(open('templates/login.html').read())

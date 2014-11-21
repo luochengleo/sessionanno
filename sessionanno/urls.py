@@ -6,6 +6,8 @@ from anno.views import current_datetime
 from anno.views import train
 from anno.views import search
 from anno.views import validate
+from anno.views import login
+
 
 urlpatterns = patterns('',
     # Examples:
@@ -17,6 +19,7 @@ urlpatterns = patterns('',
     (r'^search/(\d{1,2})/(.*?)/(\d{1,2})/$',search),
     (r'^train/(\d{1,2})/$',train),
     (r'^validate/(\d{1,2})/$',validate),
+    (r'^login/$',login),
 
 
 )
