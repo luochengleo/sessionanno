@@ -3,15 +3,17 @@ __author__ = 'luocheng'
 import Utils.SearchResultPageParser
 
 import urllib
+import urllib2
 class SearchResultCrawler:
     def __init__(self):
         pass
     def crawl(self,query,index=1):
-        print 'crawler ',query
+
         # url ='http://www.sogou.com/web?query='+urllib2.quote(query)+'&num=100&&page='+str(index)+'&ie=utf8'
 
-        url ='http://www.sogou.com/web?query='+urllib.quote(query)+'&num=100&&page='+str(index)+'&ie=utf8'
-
+        # url ='http://www.sogou.com/web?query='+urllib.quote(query)+'&num=100&&page='+str(index)+'&ie=utf8'
+        url ='http://www.sogou.com/web?query='+urllib.quote(query.encode('utf8'))+'&num=100&&page='+str(index)+'&ie=utf8'
+        print url
         try:
             webpage = urllib2.urlopen(url).read()
             return webpage
