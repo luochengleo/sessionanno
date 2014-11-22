@@ -4058,6 +4058,21 @@
 
 {% for r in resultlist %}
     {{ r|safe }}
+{% empty %}
+    <div class="vrTips" id="noresult_part1_container"><p class="icon_noRes">
+			抱歉，没有找到与<span style="font-family:宋体">“</span> <em>{{ query }}</em> <span style="font-family:宋体">”</span>相关的网页。
+		  </p>
+
+		<h3 class="p14" id="noresult_part3_container">建议您:</h3>
+		<ol class="noResList">
+			<li>请检查您输入的关键词是否有错误;</li>
+
+			<li>换另一个相似的词，或常见的词试试;</li>
+
+			<li>您可以查看<a href="http://help.sogou.com/?v=1" id="sogou_help">搜狗帮助</a>，或向我们<a href="javascript:dissatisfied('fankuiform')">提出建议</a>。</li>
+
+		</ol>
+	</div>
 {% endfor %}
 
 
@@ -4117,7 +4132,7 @@
 <!--zly-->
 
 <div class="p" id="pagebar_container">
-    {% for i in "123456789" %}
+    {% for i in page_str %}
         {% ifequal pageid i %}
             <span>{{ pageid }}</span>
         {% else %}
