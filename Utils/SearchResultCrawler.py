@@ -12,7 +12,7 @@ class SearchResultCrawler:
         # url ='http://www.sogou.com/web?query='+urllib2.quote(query)+'&num=100&&page='+str(index)+'&ie=utf8'
 
         # url ='http://www.sogou.com/web?query='+urllib.quote(query)+'&num=100&&page='+str(index)+'&ie=utf8'
-        url ='http://www.sogou.com/web?query='+urllib.quote(query.encode('utf8'))+'&num=100&&page='+str(index)+'&ie=utf8'
+        url ='http://www.sogou.com/web?query='+urllib.quote(query.encode('utf8'))+'&num=100&page='+str(index)+'&ie=utf8'
         print url
         try:
             webpage = urllib2.urlopen(url).read()

@@ -19,8 +19,8 @@
                 alert("请输入密码");
                 return;
             }
-            else if ((pass.value == "123456") && (isNaN(username.value))) {
-                window.location.href='/search/2/2/2'
+            else if ((pass.value == "a") && (!isNaN(username.value))) {
+                window.location.href='/tasks/'+username.value
                 return;
             }
             else {

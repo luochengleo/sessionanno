@@ -11,8 +11,8 @@ from urllib import unquote
 
 import sys
 import urllib
+from anno.models import Task
 reload(sys)
-from django.template import Template
 def hello(request):
     return HttpResponse('hello world')
 
@@ -28,13 +28,10 @@ def search(request,taskid,query,pageid):
     query = urllib.unquote(query)
     print 'view search after unquote',query
 
-    # query = query.decode('cp936','ignore').decode('utf8')
-    print 'after decode',query
 
-    # print urllib.quote(query)
     results = srh.getResult(query,10*int(pageid)+1,10)
 
-    t = Template(open('templates/out.html').read())
+    t = template.Template(open('templates/out.html').read())
     next_pageid = ''
     if int(pageid) < 9:
         next_pageid = str(int(pageid)+1)
@@ -56,8 +53,23 @@ def validate(request,taskid):
     return HttpResponse(html)
 
 def login(request):
-    print request.session.items()
+
     return HttpResponse(open('templates/login.html').read())
+def tasks(request,sID):
+    tlist = Task.objects.all()
+    print 'len tlist',len(tlist)
+    for t in tlist:
+        print t.task_id
+        print t.content
+    html = template.Template(open('templates/tasks.html').read())
+
+
+    c = template.Context({'tasks':tlist,})
+
+
+    respon = HttpResponse(html.render(c))
+    respon.set_cookie('studentID', value=sID, max_age=None, expires=None, path='/', domain=None, secure=None)
+    return respon
 
 
 @csrf_exempt
@@ -65,4 +77,5 @@ def log(request):
     print unquote(request.POST[u'message'])
     #now I just print the log info for debugging
     #TODO save logs into database
+
     return HttpResponse('OK')

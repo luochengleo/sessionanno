@@ -21,6 +21,7 @@ from django.db import models
 class Task(models.Model):
     content = models.CharField(max_length=1000)
     task_id = models.IntegerField()
+    init_query = models.CharField(max_length=1000)
 
 class Query(models.Model):
     content = models.CharField(max_length=100)
