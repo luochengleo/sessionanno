@@ -43,6 +43,10 @@ class FillingQuestion(models.Model):
     description = models.CharField(max_length=1000)
     task = models.ManyToManyField(Task)
 
+class Log(models.Model):
+    studentID = models.CharField(max_length=50)
+    task_id = models.IntegerField()
+    content = models.CharField(max_length=5000)
 
 if __name__ == '__main__':
     task = Task(connect='hello world', task_id=0)

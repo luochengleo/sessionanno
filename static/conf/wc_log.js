@@ -20,7 +20,9 @@ var mouse_tracking_least_move_interval = 20;//ms
 var mouse_tracking_least_move_distance = 20;//px 
 
 //for now there is no student id and query id
-studentID = 0;
+if (studentID == "") {
+    studentID = 0;
+}
 click_list = []
 
 //var page_change_id = setInterval(page_change, 3000);
@@ -44,7 +46,7 @@ $(window).blur(function () {
 
 function get_set(url_str) {
     var ret = "127.0.0.1";
-    var site_re = /http:\/\/([\w\.]+):8080\//;
+    var site_re = /http:\/\/([\w\.]+):8000\//;
     if (site_re.test(url_str)) {
         ret = RegExp.$1;
     }
@@ -209,6 +211,11 @@ function examining_message(exam_button_obj) {
 
 function base_link_message(link_obj, action_info, target_info) {
     var parent_obj = link_obj.parentNode;
+    while (parent_obj != null) {
+        if (parent_obj.className == "pt")
+            break;
+        parent_obj = parent_obj.parentNode;
+    }
     while (parent_obj != null) {
         if (parent_obj.className == "rb") {
             var rank = $(".rb").index(parent_obj);

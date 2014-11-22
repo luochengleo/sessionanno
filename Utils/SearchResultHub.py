@@ -16,12 +16,11 @@ class SearchResultHub:
         sr_list = SearchResult.objects.filter(query=query)
         print len(sr_list)
 
-        if len(sr_list)>0:
-            if (beginIndex + number < len(sr_list)) and (len(sr_list)>100):
+        if len(sr_list) > 0:
+            if beginIndex + number < len(sr_list):
                 return sr_list[beginIndex: beginIndex + number]
             else:
                 return sr_list[beginIndex:]
-
         else:
             src = SearchResultCrawler()
             srpp = SearchResultPageParser()
@@ -32,11 +31,21 @@ class SearchResultHub:
                     results.append(r)
             count = 0
             for r in results:
-                count +=1
-
-                robj = SearchResult(query= query, rank = count,content = r)
+                count += 1
+                robj = SearchResult(query=query, rank=count, content=r)
                 robj.save()
-            return self.getResult(query,beginIndex,number)
+            if len(results) > 0:
+                return self.getResult(query, beginIndex, number)
+            else:
+                #if there is no match, just return empty list
+                return []
+
+
+    def getCount(self, query):
+        sr_list = SearchResult.objects.filter(query=query)
+        return min(len(sr_list), 90)
+
+
 
     def test(self):
         for item in self.getResult(query='清华大学',beginIndex=1,number=10):
