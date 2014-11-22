@@ -17,7 +17,7 @@ class SearchResultHub:
         print len(sr_list)
 
         if len(sr_list) > 0:
-            if (beginIndex + number < len(sr_list)) and (len(sr_list) > 100):
+            if beginIndex + number < len(sr_list):
                 return sr_list[beginIndex: beginIndex + number]
             else:
                 return sr_list[beginIndex:]

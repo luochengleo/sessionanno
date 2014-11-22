@@ -8,9 +8,13 @@ class SearchResultPageParser:
     def __init__(self):
         pass
 
+    def cleanResultDiv(self, result):
+        return result
+
     def parse(self, webpage):
         soup = BeautifulSoup(webpage)
-        return [str(item) for item in soup.find_all('div', class_='rb')]
+        return [str(self.cleanResultDiv(item)) for item in soup.find_all('div', class_='rb')]
+
 
     def cleanWebpage(self, input):
         soup = BeautifulSoup(input)

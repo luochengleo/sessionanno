@@ -212,6 +212,11 @@ function examining_message(exam_button_obj) {
 function base_link_message(link_obj, action_info, target_info) {
     var parent_obj = link_obj.parentNode;
     while (parent_obj != null) {
+        if (parent_obj.className == "pt")
+            break;
+        parent_obj = parent_obj.parentNode;
+    }
+    while (parent_obj != null) {
         if (parent_obj.className == "rb") {
             var rank = $(".rb").index(parent_obj);
             var message = "type=" + target_info + "\tresult=" + parent_obj.id +
