@@ -46,6 +46,8 @@ class FillingQuestion(models.Model):
 class Log(models.Model):
     studentID = models.CharField(max_length=50)
     task_id = models.IntegerField()
+    action = models.CharField(max_length=20)
+    query = models.CharField(max_length=100)
     content = models.CharField(max_length=5000)
 
 if __name__ == '__main__':
