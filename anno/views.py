@@ -25,18 +25,13 @@ def search(request,taskid,query,pageid):
     print 'view search', query
     srh = SearchResultHub()
     query = urllib.unquote(query)
-    print 'view search after unquote', query
 
    # query = query.decode('cp936','ignore').decode('utf8')
-    print 'after decode', query
 
     # print urllib.quote(query)
     results = srh.getResult(query, 10*(int(pageid)-1), 10)
     results_count = srh.getCount(query)
-    print results_count
     max_pageid = results_count / 10
-    print max_pageid
-    print results
 
     t = template.Template(open('templates/out.html').read())
     next_pageid = ''
