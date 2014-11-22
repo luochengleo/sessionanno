@@ -34,7 +34,7 @@ def search(request,taskid,query,pageid):
     results = srh.getResult(query, 10*(int(pageid)-1), 10)
     results_count = srh.getCount(query)
     print results_count
-    max_pageid = results_count / 10 + 1
+    max_pageid = results_count / 10
     print max_pageid
     print results
 
@@ -70,7 +70,9 @@ def login(request):
 def log(request):
     message = urllib.unquote(request.POST[u'message'])
     #now I just print the log info for debugging
+    fout = open('tmp', 'a')
     print message
+    print >>fout, message
     #TODO save logs into database
 
     return HttpResponse('OK')
