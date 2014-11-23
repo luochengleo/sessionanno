@@ -9,8 +9,7 @@ from anno.views import validate
 from anno.views import login
 from anno.views import log
 from anno.views import tasks
-
-
+from anno.views import annolist
 
 urlpatterns = patterns('',
     # Examples:
@@ -25,6 +24,7 @@ urlpatterns = patterns('',
     (r'^login/$',login),
     (r'^LogService/', log),
     (r'^tasks/(\d{10})/$',tasks),
+    (r'^annolist/(\d{1,2})/$',annolist),
 
 
 )

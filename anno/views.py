@@ -5,6 +5,7 @@ from django.http import HttpResponse
 import datetime
 from Utils.SearchResultHub import SearchResultHub
 from Utils import LogParser
+from Utils.LogHub import LogHub
 from django.template import loader
 from django import template
 from django.views.decorators.csrf import csrf_exempt
@@ -76,6 +77,17 @@ def tasks(request,sID):
     respon = HttpResponse(html.render(c))
     respon.set_cookie('studentID', value=sID, max_age=None, expires=None, path='/', domain=None, secure=None)
     return respon
+
+def annolist(request,taskid):
+    try:
+        studentID =request.COOKIES['studentID']
+    except:
+        return HttpResponse('ERROR: UNKNOWN STUDENT ID')
+    lh = LogHub()
+    queries = lh.getQueriesWithSIDandTaskID(studentID,int(taskid))
+    html = template.Template(open('templates/annolist.html').read())
+    c = template.Context({'querynum':len(queries),'querylist':queries})
+    return HttpResponse(html.render(c))
 
 
 @csrf_exempt

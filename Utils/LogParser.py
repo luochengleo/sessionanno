@@ -6,6 +6,7 @@ import re
 
 
 
+
 def fromString(line):
     print line
     patterns = {key: re.compile('%s=(.*?)\\t' % key) for key in ['TIME', 'USER', 'TASK', 'QUERY', 'ACTION']}
