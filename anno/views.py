@@ -71,7 +71,7 @@ def tasks(request,sID):
     html = template.Template(open('templates/tasks.html').read())
 
 
-    c = template.Context({'tasks':tlist,})
+    c = template.Context({'tasks':tlist,'tasknum':len(tlist)})
 
 
     respon = HttpResponse(html.render(c))
