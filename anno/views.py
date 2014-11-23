@@ -4,9 +4,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import datetime
 from Utils.SearchResultHub import SearchResultHub
+from Utils import LogParser
 from django.template import loader
 from django import template
 from django.views.decorators.csrf import csrf_exempt
+from django.db import transaction, models
 
 import sys
 import urllib
@@ -57,8 +59,8 @@ def validate(request,taskid):
     return HttpResponse(html)
 
 def login(request):
-
     return HttpResponse(open('templates/login.html').read())
+
 def tasks(request,sID):
     tlist = Task.objects.all()
     print 'len tlist',len(tlist)
@@ -81,8 +83,6 @@ def log(request):
     message = urllib.unquote(request.POST[u'message'])
     #now I just print the log info for debugging
     fout = open('tmp', 'a')
-    print message
     print >>fout, message
-    #TODO save logs into database
-
+    LogParser.insertMessageToDB(message)
     return HttpResponse('OK')
