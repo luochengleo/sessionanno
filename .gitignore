@@ -1,4 +1,4 @@
 /.idea/workspace.xml
 /db.sqlite3
 *.pyc
-/.temp/
+/temp/

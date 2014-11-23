@@ -4,7 +4,7 @@ __author__ = 'cheng'
 from anno.models import *
 from Utils.SearchResultCrawler import SearchResultCrawler
 from Utils.SearchResultPageParser import SearchResultPageParser
-
+from bs4 import BeautifulSoup
 
 class SearchResultHub:
     def __init__(self):
@@ -31,9 +31,14 @@ class SearchResultHub:
                     results.append(r)
             count = 0
             for r in results:
-                count += 1
-                robj = SearchResult(query=query, rank=count, content=r)
-                robj.save()
+                soup = BeautifulSoup(r,from_encoding='utf8').find('div', class_='rb')
+                if soup.has_attr('id'):
+                    soup['id'] = 'rb_'+str(count)
+                    robj = SearchResult(query=query, rank=count, content=str(soup))
+                    robj.save()
+                    count += 1
+                else:
+                    print 'do not have key id'
             if len(results) > 0:
                 return self.getResult(query, beginIndex, number)
             else:
