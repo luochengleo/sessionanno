@@ -7,7 +7,6 @@
     <title>THUIR Experiment System</title>
     <script>
         function redirect() {
-            alert("My First JavaScript");
             var username = document.getElementById("username");
             var pass = document.getElementById("password");
             if (username.value == "") {
@@ -33,8 +32,11 @@
     </script>
 </head>
 <body>
-<form>
-    <table>
+<img style="text-align: center" src="http://www.thuir.cn/cms/uploads/images/IR4.png" align="middle">
+<h1 style="color:blue; text-align:center">清华大学计算机系信息检索组多功能实验平台</h1>
+
+<form align=center>
+    <table align="center">
         <tr align=center>
             <td>用户名:</td>
             <td><input type="text" name="username" id="username"></td>
@@ -51,5 +53,8 @@
 
     </table>
 </form>
+<div style="text-align: center">
+    <p>登陆说明：请输入你的10位学号登陆，密码为"a"</p>
+</div>
 </body>
 </html>

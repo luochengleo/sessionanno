@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h1>搜索结果标注</h1>
+<p>在当前搜索任务中，您总共提交了{{ querynum }} 个查询，请依据每一个查询，对搜索结果进行标注。</p>
+<p>标注说明：blabla</p>
+<h2>提交查询列表</h2>
+<table>
+    {%  for q in querylist %}
+    <tr><h3>{{ q }}</h3></tr>
+    {% endfor %}
+</table>
+<input type="button" value="关闭" name="name" onclick="javascript: window.close();"/>
+
+</body>
+</html>
