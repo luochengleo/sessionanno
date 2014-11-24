@@ -7,7 +7,6 @@ import re
 
 
 def fromString(line):
-    print line
     patterns = {key: re.compile('%s=(.*?)\\t' % key) for key in ['TIME', 'USER', 'TASK', 'QUERY', 'ACTION']}
     studentID = patterns['USER'].search(line).group(1)
     task_id = patterns['TASK'].search(line).group(1)
@@ -18,7 +17,6 @@ def fromString(line):
                                 query=query,
                                 action=action,
                                 content=line)
-    print logObj
     return logObj
 
 @transaction.commit_manually

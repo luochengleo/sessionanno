@@ -31,7 +31,7 @@ class SearchResultHub:
                     results.append(r)
             count = 0
             for r in results:
-                soup = BeautifulSoup(r,from_encoding='utf8').find('div', class_='rb')
+                soup = BeautifulSoup(r, from_encoding='utf8').find('div', class_='rb')
                 if soup.has_attr('id'):
                     soup['id'] = 'rb_'+str(count)
                     robj = SearchResult(query=query, rank=count, content=str(soup))
@@ -44,6 +44,8 @@ class SearchResultHub:
             else:
                 #if there is no match, just return empty list
                 return []
+
+
 
 
     def getCount(self, query):

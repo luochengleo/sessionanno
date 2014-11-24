@@ -82,7 +82,5 @@ def tasks(request,sID):
 def log(request):
     message = urllib.unquote(request.POST[u'message'])
     #now I just print the log info for debugging
-    fout = open('tmp', 'a')
-    print >>fout, message
     LogParser.insertMessageToDB(message)
     return HttpResponse('OK')
