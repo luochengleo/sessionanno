@@ -78,16 +78,31 @@ def tasks(request,sID):
     respon.set_cookie('studentID', value=sID, max_age=None, expires=None, path='/', domain=None, secure=None)
     return respon
 
-def annolist(request,taskid):
+def annolist(request, taskid):
     try:
-        studentID =request.COOKIES['studentID']
+        studentID = request.COOKIES['studentID']
     except:
         return HttpResponse('ERROR: UNKNOWN STUDENT ID')
     lh = LogHub()
     queries = lh.getQueriesWithSIDandTaskID(studentID,int(taskid))
     html = template.Template(open('templates/annolist.html').read())
-    c = template.Context({'querynum':len(queries),'querylist':queries})
+    c = template.Context({'querynum': len(queries), 'taskid': taskid, 'querylist': queries})
     return HttpResponse(html.render(c))
+
+
+def annotation(request, taskid, query):
+    try:
+        studentID = request.COOKIES['studentID']
+    except:
+        return HttpResponse('ERROR: UNKNOWN STUDENT ID')
+    lh = LogHub()
+    results = lh.getClickedResults(studentID, taskid, query)
+    print 'len result:', len(results)
+    t = template.Template(open('templates/annotation.html').read())
+    c = template.Context({'resultlist': [r.content for r in results],
+                          'taskid': taskid,
+                          'query': query})
+    return HttpResponse(t.render(c))
 
 
 @csrf_exempt

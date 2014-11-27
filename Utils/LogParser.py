@@ -5,10 +5,13 @@ from django.db import transaction, models
 import re
 
 
+patterns = {key: re.compile('%s=(.*?)\\t' % key) for key in ['TIME', 'USER', 'TASK', 'QUERY', 'ACTION']}
+info_patterns = re.compile('INFO:\\t(.*?)$')
+click_info_patterns = {key: re.compile('%s=(.*?)\\t' % key) for key in ['type', 'result', 'page', 'rank']}
+click_info_patterns['src'] = re.compile('src=(.*?)$')
 
 
 def fromString(line):
-    patterns = {key: re.compile('%s=(.*?)\\t' % key) for key in ['TIME', 'USER', 'TASK', 'QUERY', 'ACTION']}
     studentID = patterns['USER'].search(line).group(1)
     task_id = patterns['TASK'].search(line).group(1)
     query = patterns['QUERY'].search(line).group(1)
@@ -19,6 +22,15 @@ def fromString(line):
                                 action=action,
                                 content=line)
     return logObj
+
+
+def getRankOfClickResult(line):
+    info = info_patterns.search(line).group(1)
+    page = int(click_info_patterns['page'].search(info).group(1))
+    rank = int(click_info_patterns['rank'].search(info).group(1))
+    print (page-1)*10 + rank
+    return (page-1)*10 + rank
+
 
 @transaction.commit_manually
 def insertMessageToDB(message):

@@ -10,6 +10,7 @@ from anno.views import login
 from anno.views import log
 from anno.views import tasks
 from anno.views import annolist
+from anno.views import annotation
 
 urlpatterns = patterns('',
     # Examples:
@@ -25,6 +26,6 @@ urlpatterns = patterns('',
     (r'^LogService/', log),
     (r'^tasks/(\d{10})/$',tasks),
     (r'^annolist/(\d{1,2})/$',annolist),
-
+    (r'^annotation/(\d{1,2})/(.*?)/$', annotation)
 
 )

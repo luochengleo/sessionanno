@@ -1,3 +1,4 @@
+{%  load add_annotation %}
 <!DOCTYPE html>
 <!-- saved from url=(0218)http://www.sogou.com/web?query=%E5%BC%80%E5%BF%83%E4%B9%90%E5%9B%AD+%E7%BE%8A%E9%A9%BC&ie=utf8&_ast=1415606656&_asf=null&w=01029901&p=40040100&dp=1&cid=&sut=7854&sst0=1415606634628&lkt=1%2C1415606631196%2C1415606631196 -->
 <html>
@@ -17,6 +18,7 @@
     <!-- global variables: current task id, current query -->
     <script type="text/javascript">
         currentTaskID = "{{ taskid }}";
+        currentQuery = "{{ query }}"
    </script>
    	<script type="text/javascript" src="/static/conf/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="/static/conf/jquery-min.js"></script>
@@ -3979,22 +3981,7 @@
 </style>
 
 {% for r in resultlist %}
-    {{ r | safe }}
-{% empty %}
-    <div class="vrTips" id="noresult_part1_container"><p class="icon_noRes">
-			抱歉，没有找到与<span style="font-family:宋体">“</span> <em>{{ query }}</em> <span style="font-family:宋体">”</span>相关的网页。
-		  </p>
-
-		<h3 class="p14" id="noresult_part3_container">建议您:</h3>
-		<ol class="noResList">
-			<li>请检查您输入的关键词是否有错误;</li>
-
-			<li>换另一个相似的词，或常见的词试试;</li>
-
-			<li>您可以查看<a href="http://help.sogou.com/?v=1" id="sogou_help">搜狗帮助</a>，或向我们<a href="javascript:dissatisfied('fankuiform')">提出建议</a>。</li>
-
-		</ol>
-	</div>
+    {{ r |add_annotation| safe }}
 {% endfor %}
 
 
@@ -4007,71 +3994,5 @@
 
 </div>
 
-
-
-<!--
-<div class="p" id="pagebar_container">
-    <span>1</span>
-    <a
-        id="sogou_page_2"
-        href="http://www.sogou.com/web?query=%E5%BC%80%E5%BF%83%E4%B9%90%E5%9B%AD+%E7%BE%8A%E9%A9%BC&sut=7854&lkt=1%2C1415606631196%2C1415606631196&sst0=1415606634628&cid=&page=2&ie=utf8&p=40040100&dp=1&w=01029901&dr=1">2</a>
-    <a
-        id="sogou_page_3"
-        href="http://www.sogou.com/web?query=%E5%BC%80%E5%BF%83%E4%B9%90%E5%9B%AD+%E7%BE%8A%E9%A9%BC&sut=7854&lkt=1%2C1415606631196%2C1415606631196&sst0=1415606634628&cid=&page=3&ie=utf8&p=40040100&dp=1&w=01029901&dr=1">3</a>
-    <a
-        id="sogou_page_4"
-        href="http://www.sogou.com/web?query=%E5%BC%80%E5%BF%83%E4%B9%90%E5%9B%AD+%E7%BE%8A%E9%A9%BC&sut=7854&lkt=1%2C1415606631196%2C1415606631196&sst0=1415606634628&cid=&page=4&ie=utf8&p=40040100&dp=1&w=01029901&dr=1">4</a>
-    <a
-        id="sogou_page_5"
-        href="http://www.sogou.com/web?query=%E5%BC%80%E5%BF%83%E4%B9%90%E5%9B%AD+%E7%BE%8A%E9%A9%BC&sut=7854&lkt=1%2C1415606631196%2C1415606631196&sst0=1415606634628&cid=&page=5&ie=utf8&p=40040100&dp=1&w=01029901&dr=1">5</a>
-    <a
-        id="sogou_page_6"
-        href="http://www.sogou.com/web?query=%E5%BC%80%E5%BF%83%E4%B9%90%E5%9B%AD+%E7%BE%8A%E9%A9%BC&sut=7854&lkt=1%2C1415606631196%2C1415606631196&sst0=1415606634628&cid=&page=6&ie=utf8&p=40040100&dp=1&w=01029901&dr=1">6</a>
-    <a
-        id="sogou_page_7"
-        href="http://www.sogou.com/web?query=%E5%BC%80%E5%BF%83%E4%B9%90%E5%9B%AD+%E7%BE%8A%E9%A9%BC&sut=7854&lkt=1%2C1415606631196%2C1415606631196&sst0=1415606634628&cid=&page=7&ie=utf8&p=40040100&dp=1&w=01029901&dr=1">7</a>
-    <a
-        id="sogou_page_8"
-        href="http://www.sogou.com/web?query=%E5%BC%80%E5%BF%83%E4%B9%90%E5%9B%AD+%E7%BE%8A%E9%A9%BC&sut=7854&lkt=1%2C1415606631196%2C1415606631196&sst0=1415606634628&cid=&page=8&ie=utf8&p=40040100&dp=1&w=01029901&dr=1">8</a>
-    <a
-        id="sogou_page_9"
-        href="http://www.sogou.com/web?query=%E5%BC%80%E5%BF%83%E4%B9%90%E5%9B%AD+%E7%BE%8A%E9%A9%BC&sut=7854&lkt=1%2C1415606631196%2C1415606631196&sst0=1415606634628&cid=&page=9&ie=utf8&p=40040100&dp=1&w=01029901&dr=1">9</a>
-    <a
-        id="sogou_next"
-        href="http://www.sogou.com/web?query=%E5%BC%80%E5%BF%83%E4%B9%90%E5%9B%AD+%E7%BE%8A%E9%A9%BC&sut=7854&lkt=1%2C1415606631196%2C1415606631196&sst0=1415606634628&cid=&page=2&ie=utf8&p=40040100&dp=1&w=01029901&dr=1"
-        class="np">下一页 &gt;</a>
-
-<img style="position:absolute;top:-1px" src="../../../../static/fav.ico" height="0" border="0" width="0">
-<img src="../../../../static/pv.gif" width="1" height="1" style="position:absolute;top:-1px">
-</div>
--->
-
-<!--[if IE 6]><style type="text/css">.topbar, .res-logn-ico {display:none}</style><![endif]-->
-
-
-<!--STATUS total 10 time 157 page 6 maxEnd 82 totalItems 442-->
-<!--real_pageno:1-->
-<!--zly-->
-
-<div class="p" id="pagebar_container">
-    {% for i in page_str %}
-        {% ifequal pageid i %}
-            <span>{{ pageid }}</span>
-        {% else %}
-            <a
-                id="sogou_page_{{ i }}"
-                class="pagination"
-                href="/search/{{ taskid }}/{{ query }}/{{ forloop.counter }}/">{{ forloop.counter }}</a>
-        {% endifequal %}
-    {% endfor %}
-    {% if next_pageid %}
-        <a
-            id="sogou_next"
-            href="/search/{{ taskid }}/{{ query }}/{{ next_pageid }}/"
-            class="pagination np">下一页 &gt;</a>
-    {% endif %}
-<img style="position:absolute;top:-1px" src="../../../../static/fav.ico" height="0" border="0" width="0">
-<img src="../../../../static/pv.gif" width="1" height="1" style="position:absolute;top:-1px">
-</div>
 </body>
 </html>

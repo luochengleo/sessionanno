@@ -11,7 +11,7 @@
 <h2>提交查询列表</h2>
 <table>
     {%  for q in querylist %}
-    <tr><h3>{{ q }}</h3></tr>
+    <tr><h3><a href="/annotation/{{ taskid }}/{{ q }}/" target="_blank">{{ q }}</a></h3></tr>
     {% endfor %}
 </table>
 <input type="button" value="关闭" name="name" onclick="javascript: window.close();"/>
