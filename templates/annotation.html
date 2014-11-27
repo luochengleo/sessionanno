@@ -17,8 +17,6 @@
     <!-- global variables: current task id, current query -->
     <script type="text/javascript">
         currentTaskID = "{{ taskid }}";
-        currentQuery = "{{ query }}";
-        currentPageID = "{{ pageid }}";
    </script>
    	<script type="text/javascript" src="/static/conf/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="/static/conf/jquery-min.js"></script>
@@ -3926,79 +3924,6 @@
 
 
 <div class="wrap">
-<!--[if IE 6]><style type="text/css">.topbar, .res-logn-ico {display:none}</style><![endif]-->
-<dl class="topbar">
-    <dd class="no-bg"><a href="javascript:void(0)" class="res-logn-ico" id="loginBtn">登录</a></dd>
-</dl>
-<div class="header"><a title="回到搜狗首页" href="http://www.sogou.com/" class="logo"><img src="../../../../static/sousuo02.png"
-                                                                                     width="123" height="32" alt=""></a>
-
-    <ul class="searchnav">
-        <li>
-            <a href="http://news.sogou.com/news?ie=utf8&p=40230447&interV=kKIOkrELjbkNmLkElbYTkKIKmbELjboJmLkEkL8TkKIMkLELjb8TkKIKmrELjbkImLkElbs=_2064201500&query={{ query }}"
-               target="_blank" id="sogou_news" onclick="navBar(this,&#39;query=&#39;,true);">新闻</a></li>
-        <li class="cur"><a>网页</a></li>
-        <li><span class="nav-new"></span><a
-                href="http://weixin.sogou.com/weixin?p=01030402&query={{ query }}"&type=2&ie=utf8"
-                target="_blank" id="sogou_weixin" onclick="navBar(this,&#39;query=&#39;,true)">微信</a></li>
-        <li>
-            <a href="http://wenwen.sogou.com/s/?cid=websearch2ww&w={{ query }}""
-               target="_blank" id="sogou_wenwen" onclick="navBar(this,&#39;w=&#39;,true)">问问</a></li>
-        <li>
-            <a href="http://pic.sogou.com/pics?ie=utf8&p=40230504&interV=kKIOkrELjbkNmLkElbYTkKIKmbELjboJmLkEkL8TkKIMkLELjb8TkKIKmrELjbkImLkElbs=_2064201500&query={{ query }}"
-               target="_blank" id="sogou_pic" onclick="navBar(this,&#39;query=&#39;,true)">图片</a></li>
-        <li>
-            <a href="http://v.sogou.com/v?ie=utf8&p=40230608&interV=kKIOkrELjbkNmLkElbYTkKIKmbELjboJmLkEkL8TkKIMkLELjb8TkKIKmrELjbkImLkElbs=_2064201500&query={{ query }}"
-               target="_blank" onclick="navBar(this,&#39;query=&#39;,true)" id="sogou_video">视频</a></li>
-        <li>
-            <a href="http://mp3.sogou.com/music.so?ie=utf8&class=1&p=40010200&interV=kKIOkrELjbkNmLkElbYTkKIKmbELjboJmLkEkL8TkKIMkLELjb8TkKIKmrELjbkImLkElbs=_2064201500&query={{ query }}"
-               target="_blank" id="sogou_music" onclick="navBar(this,&#39;query=&#39;,true)">音乐</a></li>
-        <li><a href="http://map.sogou.com/#lq={{ query }}" id="sogou_maps"
-               target="_blank" onclick="navBar(this,&#39;#lq=&#39;,false)">地图</a></li>
-        <li><a id="inttab_35_1" onclick="navBar(this,&#39;query=&#39;,true);" target="_blank"
-               href="http://www.sogou.com/web?query={{ query }}&interation=196643&chuidq=35&sourceid=inttab_web&interV=kKIOkrELjbkNmLkElbYTkKIKmbELjboJmLkEkL8TkKIMkLELjb8TkKIKmrELjbkImLkElbs%3D_2064201500">旅游</a>
-        </li>
-        <li class="navMore"><a href="http://www.sogou.com/docs/more.htm?v=1" id="top_more" target="_blank">更多<span>&gt;&gt;</span></a>
-
-
-        </li>
-    </ul>
-
-    <form name="searchForm" id="searchForm">
-        <div class="querybox">
-            <div class="qborder">
-                <div class="qborder2"><input type="text" class="query" id="upquery" name="query"
-                                             onfocus="focusInput(this)" ov="{{ query }}" value="{{ query }}" autocomplete="off">
-                </div>
-            </div>
-            <input
-                type="submit" value="搜狗搜索" class="sbtn1" uigs="searchBtn" onmouseup="this.className=&#39;sbtn1&#39;"
-                onmousedown="this.className=&#39;btnactive&#39;" onmouseout="this.className=&#39;sbtn1&#39;"
-                onmouseover="this.className=&#39;btnactive&#39;" id="searchBtn">
-            <!--
-            <div class="term">
-                <div class="popMore" style="display:none"><a id="left_timespan_0" class="cur"
-                                                             href="http://www.sogou.com/web?query=%E5%BC%80%E5%BF%83%E4%B9%90%E5%9B%AD+%E7%BE%8A%E9%A9%BC&ie=utf8&_ast=1415606656&_asf=null&w=01029901&p=40040100&dp=1&cid=&sut=7854&sst0=1415606634628&lkt=1%2C1415606631196%2C1415606631196#">全部时间</a><a
-                        id="left_timespan_1"
-                        href="http://www.sogou.com/web?query=%E5%BC%80%E5%BF%83%E4%B9%90%E5%9B%AD+%E7%BE%8A%E9%A9%BC&sut=7854&ie=utf8&sst0=1415606634628&p=40040100&cid=&sourceid=inttime_day&interV=kKIOkrELjbkNmLkElbYTkKIKmbELjboJmLkEkL8TkKIMkLELjb8TkKIKmrELjbkImLkElbs%3D_2064201500&tsn=1&interation=">一天内</a><a
-                        id="left_timespan_2"
-                        href="http://www.sogou.com/web?query=%E5%BC%80%E5%BF%83%E4%B9%90%E5%9B%AD+%E7%BE%8A%E9%A9%BC&sut=7854&ie=utf8&sst0=1415606634628&p=40040100&cid=&sourceid=inttime_week&interV=kKIOkrELjbkNmLkElbYTkKIKmbELjboJmLkEkL8TkKIMkLELjb8TkKIKmrELjbkImLkElbs%3D_2064201500&tsn=2&interation=">一周内</a><a
-                        id="left_timespan_3"
-                        href="http://www.sogou.com/web?query=%E5%BC%80%E5%BF%83%E4%B9%90%E5%9B%AD+%E7%BE%8A%E9%A9%BC&sut=7854&ie=utf8&sst0=1415606634628&p=40040100&cid=&sourceid=inttime_month&interV=kKIOkrELjbkNmLkElbYTkKIKmbELjboJmLkEkL8TkKIMkLELjb8TkKIKmrELjbkImLkElbs%3D_2064201500&tsn=3&interation=">一月内</a><a
-                        id="left_timespan_4"
-                        href="http://www.sogou.com/web?query=%E5%BC%80%E5%BF%83%E4%B9%90%E5%9B%AD+%E7%BE%8A%E9%A9%BC&sut=7854&ie=utf8&sst0=1415606634628&p=40040100&cid=&sourceid=inttime_year&interV=kKIOkrELjbkNmLkElbYTkKIKmbELjboJmLkEkL8TkKIMkLELjb8TkKIKmrELjbkImLkElbs%3D_2064201500&tsn=4&interation=">一年内</a>
-                </div>
-            </div>
-            -->
-        </div>
-    </form>
-    <form id="fankuiform" method="post" accept-charset="gbk"><input type="hidden" name="cause" value="满意"><input
-            type="hidden" name="query" value="开心乐园 羊驼"><input type="hidden" name="refer"
-                                                              value="http://www.sogou.com/web?query=%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%B9%B3%E5%8F%B0&amp;ie=utf8&amp;_ast=1415606656&amp;_asf=null&amp;w=01029901&amp;p=40040100&amp;dp=1&amp;cid=&amp;sut=9839&amp;sst0=1415606624373&amp;lkt=0%2C0%2C0"><input
-            type="hidden" name="uuid" value="be121967-ac67-4039-805c-e28f02d3e83c"><input type="hidden" name="scenehtml"
-                                                                                          id="scenehtml"><input
-            type="hidden" name="queryurl" value=""><input type="hidden" name="v" value="1"></form>
-</div>
 
 
 <div class="wrapper" id="wrapper">
