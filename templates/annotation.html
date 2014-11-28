@@ -15,6 +15,7 @@
     <link rel="dns-prefetch" href="http://img03.sogoucdn.com/">
     <link rel="dns-prefetch" href="http://img04.sogoucdn.com/">
     <link rel="shortcut icon" href="http://www.sogou.c../../../../static/images/logo/new/favicon.ico?nv=1&v=2" type="image/x-icon">
+    <link href="/static/conf/button.css" type="text/css" rel="stylesheet">
     <!-- global variables: current task id, current query -->
     <script type="text/javascript">
         currentTaskID = "{{ taskid }}";
@@ -27,6 +28,7 @@
 	<script type="text/javascript" src="/static/conf/jquery.reveal.js"></script>
 	<script type="text/javascript" src="/static/conf/jquery.raty.js"></script>
 	<script type="text/javascript" src="/static/conf/jquery.raty.min.js"></script>
+    <script type="text/javascript" src="/static/conf/anno_log.js"></script>
     <title>搜狗搜索</title>
 
 
@@ -4009,7 +4011,7 @@
 </div>
 
 <div class="annotation_footer">
-
+    <button class="WCOverButton button blue close-reveal-modal"  type="Button" onclick="over_button_on_click();">浏览完成</button>
 </div>
 </body>
 </html>

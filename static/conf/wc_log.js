@@ -147,6 +147,8 @@ function show_display_coordinate() {
     alert(info);
 }
 
+
+
 function display_examining_button() {
     if (check_state == 0) {
         //show_display_coordinate();
@@ -220,13 +222,6 @@ function base_link_message(link_obj, action_info, target_info) {
             var rank = $(".rb").index(parent_obj);
             var message = "type=" + target_info + "\tresult=" + parent_obj.id +
                 "\tpage=" + currentPageID + "\trank=" + rank;
-
-            if (action_info == 'CLICK' && check_state == 0) {
-                temp_id = parent_obj.id;
-                if (click_list.indexOf(temp_id) == -1) {
-                    click_list.push(temp_id);
-                }
-            }
 
             if (link_obj.href === undefined) {
                 message = message + "\tsrc=" + link_obj.src;
@@ -355,3 +350,9 @@ $(function () {
    });
 });
 
+function over_button_on_click() {
+    var client_time = (new Date()).getTime();
+    send_mouse_info(formInfo("OVER", 'client_time=' + client_time));
+    sync_flush_log_message();
+    location.href = "/annolist/" + currentTaskID + "/";
+}

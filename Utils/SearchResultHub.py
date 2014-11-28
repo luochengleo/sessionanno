@@ -34,7 +34,7 @@ class SearchResultHub:
                 soup = BeautifulSoup(r, from_encoding='utf8').find('div', class_='rb')
                 if soup.has_attr('id'):
                     soup['id'] = 'rb_'+str(count)
-                    robj = SearchResult(query=query, rank=count, content=str(soup))
+                    robj = SearchResult(query=query, rank=count, result_id='rb_'+str(count), content=str(soup))
                     robj.save()
                     count += 1
                 else:

@@ -30,6 +30,7 @@ class Query(models.Model):
 class SearchResult(models.Model):
     # query = models.ForeignKey(Query)
     query = models.CharField(max_length=100)
+    result_id = models.CharField(max_length=50)
     rank = models.IntegerField()
     content = models.CharField(max_length=2000)
 
@@ -48,6 +49,15 @@ class Log(models.Model):
     task_id = models.IntegerField()
     action = models.CharField(max_length=20)
     query = models.CharField(max_length=100)
+    content = models.CharField(max_length=5000)
+
+class Annotation(models.Model):
+    studentID = models.CharField(max_length=50)
+    task_id = models.IntegerField()
+    query = models.CharField(max_length=100)
+    result_id = models.CharField(max_length=50)
+    result_url = models.CharField(max_length=1024)
+    score = models.IntegerField()
     content = models.CharField(max_length=5000)
 
 if __name__ == '__main__':

@@ -11,6 +11,7 @@ from anno.views import log
 from anno.views import tasks
 from anno.views import annolist
 from anno.views import annotation
+from anno.views import log_annotation
 
 urlpatterns = patterns('',
     # Examples:
@@ -23,9 +24,9 @@ urlpatterns = patterns('',
     (r'^train/(\d{1,2})/$',train),
     (r'^validate/(\d{1,2})/$',validate),
     (r'^login/$',login),
-    (r'^LogService/', log),
+    (r'^LogService/$', log),
     (r'^tasks/(\d{10})/$',tasks),
     (r'^annolist/(\d{1,2})/$',annolist),
-    (r'^annotation/(\d{1,2})/(.*?)/$', annotation)
-
+    (r'^annotation/(\d{1,2})/(.*?)/$', annotation),
+    (r'^AnnoService/$', log_annotation)
 )
