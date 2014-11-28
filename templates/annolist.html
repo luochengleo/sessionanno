@@ -3,11 +3,25 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+    <style>
+        .annotation_header {
+            background: #EEEEEE;
+            margin: 10px;
+            padding: 40px;
+        }
+        .annotation_list {
+            margin: 10px;
+            padding: 40px;
+        }
+    </style>
 </head>
 <body>
+<div class="annotation_header">
 <h1>搜索结果标注</h1>
 <p>在当前搜索任务中，您总共提交了{{ querynum }} 个查询，请依据每一个查询，对搜索结果进行标注。</p>
 <p>标注说明：blabla</p>
+</div>
+<div class="annotation_list">
 <h2>提交查询列表</h2>
 <table>
     {%  for q in querylist %}
@@ -15,6 +29,7 @@
     {% endfor %}
 </table>
 <input type="button" value="关闭" name="name" onclick="javascript: window.close();"/>
+</div>
 
 </body>
 </html>

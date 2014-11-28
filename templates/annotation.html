@@ -3917,16 +3917,31 @@
             padding-top: 0
         }
 
+        .annotation_header {
+            background: #EEEEEE;
+            margin: 10px;
+            padding: 40px;
+        }
+
+        .annotation_footer {
+            background: #EEEEEE;
+            margin: 10px;
+            padding: 40px;
+        }
+
     </style>
 
 
     <link rel="stylesheet" type="text/css" href="/static/m3.v.20.css">
 </head>
 <body class=" vr1024">
-
-
-<div class="wrap">
-
+<div class="annotation_header">
+<h1>
+    搜索结果标注
+</h1>
+<p>标注说明：blabla</p>
+<p>current query:{{ query }}</p>
+</div>
 
 <div class="wrapper" id="wrapper">
 
@@ -3978,14 +3993,13 @@
         border-bottom: 1px solid #DDE6E3;
     }
 
+
+
 </style>
 
 {% for r in resultlist %}
     {{ r |add_annotation| safe }}
 {% endfor %}
-
-
-
 </div>
 </div>
 
@@ -3994,5 +4008,8 @@
 
 </div>
 
+<div class="annotation_footer">
+
+</div>
 </body>
 </html>

@@ -23,7 +23,6 @@ var mouse_tracking_least_move_distance = 20;//px
 if (studentID == "") {
     studentID = 0;
 }
-click_list = []
 
 //var page_change_id = setInterval(page_change, 3000);
 //var mouse_tracking_id=setInterval(log_mouse_tracking, 1000);
