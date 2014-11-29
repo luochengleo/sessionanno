@@ -26,6 +26,10 @@ class Task(models.Model):
 class Query(models.Model):
     content = models.CharField(max_length=100)
     task = models.ManyToManyField(Task)
+    resultnum = models.IntegerField()
+    recomm = models.CharField(max_length=1000)
+    lastcrawledpage = models.IntegerField()
+
 
 class SearchResult(models.Model):
     # query = models.ForeignKey(Query)
