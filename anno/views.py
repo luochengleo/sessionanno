@@ -109,8 +109,9 @@ def annotation(request, taskid, query):
 
 @csrf_exempt
 def log(request):
-    message = urllib.unquote(request.POST[u'message'])
-    #now I just print the log info for debugging
+    message = urllib.unquote(request.POST[u'message']).encode('utf8')
+    print message
+    print type(message)
     LogParser.insertMessageToDB(message)
     return HttpResponse('OK')
 

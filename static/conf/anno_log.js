@@ -37,8 +37,8 @@ function session_over_button_on_click() {
     message += "\tACTION=SESSION_ANNOTATION";
     message += "\tINFO:";
     message += "\tscore="  + score + "\n"
-    if (confirm("biaozhuwancheng?")) {
-        var encode_str = encodeURIComponent(message);
+    if (confirm("ok?")) {
+        var encode_str = message;
         var log_url = "http://" + server_site + ":8000/SessionAnnoService/";
         $.ajax({
             type: 'POST',
@@ -73,8 +73,8 @@ function over_button_on_click() {
         message += "\tscore=" + scores[i];
         message += "\n";
     }
-    if (confirm("biaozhuwancheng?")) {
-        var encode_str = encodeURIComponent(message);
+    if (confirm("ok?")) {
+        var encode_str = message;
         var log_url = "http://" + server_site + ":8000/AnnoService/";
         $.ajax({
             type: 'POST',
