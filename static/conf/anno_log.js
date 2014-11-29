@@ -21,6 +21,39 @@ function get_set(url_str) {
     return ret;
 }
 
+$(function () {
+    if ($("#session_annotation")) {
+        $("#session_annotation").raty('set', {number: 5, starOn: "/static/conf/img/star-on.png", starOff: "/static/conf/img/star-off.png"});
+    }
+});
+
+function session_over_button_on_click() {
+    var score = $("#session_annotation").raty('score');
+    var message = "";
+    var client_time = (new Date()).getTime();
+    message += "TIMESTAMP=" + client_time;
+    message += "\tUSER=" + studentID;
+    message += "\tTASK=" + currentTaskID;
+    message += "\tACTION=SESSION_ANNOTATION";
+    message += "\tINFO:";
+    message += "\tscore="  + score + "\n"
+    if (confirm("ok?")) {
+        var encode_str = message;
+        var log_url = "http://" + server_site + ":8000/SessionAnnoService/";
+        $.ajax({
+            type: 'POST',
+            url: log_url,
+            data: {message: encode_str},
+            async: false,
+            complete: function (jqXHR, textStatus) {
+                //alert(textStatus + "----" + jqXHR.status + "----" + jqXHR.readyState);
+                //should we reset onbeforeunload here?
+                console.log("synchronously flush mouse log!")
+            }
+        });
+        location.href = "/tasks/" + studentID + "/";
+    }
+}
 
 function over_button_on_click() {
     var result_ids = $(".rb").map(function (i, e) {return e.id;});
@@ -40,8 +73,8 @@ function over_button_on_click() {
         message += "\tscore=" + scores[i];
         message += "\n";
     }
-    if (confirm("biaozhuwancheng?")) {
-        var encode_str = encodeURIComponent(message);
+    if (confirm("ok?")) {
+        var encode_str = message;
         var log_url = "http://" + server_site + ":8000/AnnoService/";
         $.ajax({
             type: 'POST',

@@ -291,7 +291,7 @@ function formInfo(action_info, log_str) {
 }
 
 function ajax_log_message(log_str) {
-    var encode_str = encodeURIComponent(log_str);
+    var encode_str = log_str;
     //alert(encode_str + "\n");
     var log_url = "http://" + server_site + ":8000/LogService/";
     $.ajax({
@@ -305,7 +305,8 @@ function ajax_log_message(log_str) {
 }
 
 function sync_flush_log_message() {
-    var encode_str = encodeURIComponent(mouse_tracking_info);
+    //var encode_str = encodeURIComponent(mouse_tracking_info);
+    var encode_str = mouse_tracking_info;
     var log_url = "http://" + server_site + ":8000/LogService/";
     $.ajax({
         type: 'POST',

@@ -6,6 +6,7 @@ import datetime
 from Utils.SearchResultHub import SearchResultHub
 from Utils import LogParser
 from Utils import AnnoLogParser
+from Utils import SessionAnnoLogParser
 from Utils.LogHub import LogHub
 from django.template import loader
 from django import template
@@ -108,8 +109,9 @@ def annotation(request, taskid, query):
 
 @csrf_exempt
 def log(request):
-    message = urllib.unquote(request.POST[u'message'])
-    #now I just print the log info for debugging
+    message = urllib.unquote(request.POST[u'message']).encode('utf8')
+    print message
+    print type(message)
     LogParser.insertMessageToDB(message)
     return HttpResponse('OK')
 
@@ -118,4 +120,11 @@ def log_annotation(request):
     message = urllib.unquote(request.POST[u'message'])
     print message
     AnnoLogParser.insertMessageToDB(message)
+    return HttpResponse('OK')
+
+@csrf_exempt
+def log_session_annotation(request):
+    message = urllib.unquote(request.POST[u'message'])
+    print message
+    SessionAnnoLogParser.insertMessageToDB(message)
     return HttpResponse('OK')
