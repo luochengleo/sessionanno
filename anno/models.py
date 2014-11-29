@@ -60,6 +60,12 @@ class Annotation(models.Model):
     score = models.IntegerField()
     content = models.CharField(max_length=5000)
 
+class SessionAnnotation(models.Model):
+    studentID = models.CharField(max_length=50)
+    task_id = models.IntegerField()
+    score = models.IntegerField()
+    content = models.CharField(max_length=5000)
+
 if __name__ == '__main__':
     task = Task(connect='hello world', task_id=0)
     task.save()

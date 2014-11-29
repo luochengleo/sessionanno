@@ -13,7 +13,27 @@
             margin: 10px;
             padding: 40px;
         }
+        .annotation_footer {
+            background: #EEEEEE;
+            margin: 10px;
+            padding: 40px;
+        }
+
     </style>
+        <link href="/static/conf/button.css" type="text/css" rel="stylesheet">
+    <!-- global variables: current task id, current query -->
+    <script type="text/javascript">
+        currentTaskID = "{{ taskid }}";
+        currentQuery = "{{ query }}"
+   </script>
+   	<script type="text/javascript" src="/static/conf/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="/static/conf/jquery-min.js"></script>
+	<script type="text/javascript" src="/static/conf/wc_preprocess.js"></script>
+	<script type="text/javascript" src="/static/conf/jquery.bgpos.js"></script>
+	<script type="text/javascript" src="/static/conf/jquery.reveal.js"></script>
+	<script type="text/javascript" src="/static/conf/jquery.raty.js"></script>
+	<script type="text/javascript" src="/static/conf/jquery.raty.min.js"></script>
+    <script type="text/javascript" src="/static/conf/anno_log.js"></script>
 </head>
 <body>
 <div class="annotation_header">
@@ -28,8 +48,16 @@
     <tr><h3><a href="/annotation/{{ taskid }}/{{ q }}/" target="_blank">{{ q }}</a></h3></tr>
     {% endfor %}
 </table>
-<input type="button" value="关闭" name="name" onclick="javascript: window.close();"/>
 </div>
 
-</body>
+<div class="annotation_footer">
+    <div>
+        <div>
+            session satisfaction:
+        </div>
+        <div id="session_annotation"></div>
+        <div><p></p></div>
+    </div>
+    <button class="WCOverButton button blue close-reveal-modal"  type="Button" onclick="session_over_button_on_click();">浏览完成</button>
+</div></body>
 </html>
