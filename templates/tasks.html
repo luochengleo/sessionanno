@@ -2,10 +2,12 @@
 <html>
 <head lang="en">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+    <link href="/static/conf/annotation.css" type="text/css" rel="stylesheet">
     <title>All tasks</title>
 </head>
 <body>
+
+<div class="annotation_header">
 <h1 align="center">清华大学计算机系信息检索组</h1>
 <h1 align="center"> 欢迎您！</h1>
 <script>
@@ -17,8 +19,8 @@
 </script>
 
 <p align="center" style="font-size:16px" color="red">当前共有{{ tasknum }}个标注任务</p>
-
-
+</div>
+<div class="annotation_list">
 {% for item in tasks %}
 <div>
 <h2> 第 {{ item.task_id }} 个标注任务</h2>
@@ -28,5 +30,6 @@
 </div>
 
 {% endfor %}
+</div>
 </body>
 </html>
