@@ -25,7 +25,7 @@
 <div>
     <h2> 第 {{ task.task_id }} 个标注任务</h2>
     <p>任务描述：{{ task.content }}</p>
-    <p>question:{{ task.question }}</p>
+    <p style="color: orangered">问题:{{ task.question }}</p>
 </div>
 </div>
 <div class="annotation_list">
@@ -33,7 +33,7 @@
     </textarea>
 </div>
 <div class="annotation_footer">
-    <button class="WCOverButton button blue close-reveal-modal"  type="Button" onclick="questionnaire_button_on_click();">浏览完成</button>
+    <button class="WCOverButton button blue close-reveal-modal"  type="Button" onclick="questionnaire_button_on_click();">提交答案</button>
 </div>
 </body>
 </html>
