@@ -24,7 +24,7 @@
 <h2> 第 {{ item.task_id }} 个标注任务</h2>
     <p>任务描述：{{ item.content }}</p>
     <p>初始查询： {{ item.init_query }}</p>
-    <a href ='http://localhost:8000/search/{{ item.task_id }}/{{ item.init_query }}/1' target="_blank">点击这里开始</a>
+    <a href ='/search/{{ item.task_id }}/{{ item.init_query }}/1' target="_blank">点击这里开始</a>
 </div>
 
 {% endfor %}
