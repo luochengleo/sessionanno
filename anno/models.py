@@ -29,6 +29,7 @@ class Query(models.Model):
     resultnum = models.IntegerField()
     recomm = models.CharField(max_length=1000)
     lastcrawledpage = models.IntegerField()
+    stopCrawl = models.IntegerField()
 
 
 class SearchResult(models.Model):
