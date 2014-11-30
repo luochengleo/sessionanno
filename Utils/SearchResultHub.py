@@ -2,6 +2,7 @@
 __author__ = 'cheng'
 
 from anno.models import *
+from django.db import transaction, models
 from Utils.SearchResultCrawler import SearchResultCrawler
 from Utils.SearchResultPageParser import SearchResultPageParser
 from bs4 import BeautifulSoup
@@ -34,7 +35,7 @@ class SearchResultHub:
 
 
         if resultnum <=beginIndex+number or resultnum< beginIndex+2*number:
-            if q.stopCrawl ==1:
+            if q.stopCrawl == 1:
                 print 'STOP CRAWLING'
                 sr_list = SearchResult.objects.filter(query=query)
                 return sorted(sr_list, key=lambda x:x.rank)[beginIndex:min(beginIndex+number,len(sr_list))]
@@ -45,7 +46,7 @@ class SearchResultHub:
                 parsedResults = srpp.parse(content)
                 if len(parsedResults) == 0:
                     print 'WARNING: No Results on Web Page',query,crawlIndex
-                    open('/Users/luocheng/Documents/pycharmproj/'+query+str(crawlIndex)+'.html','w').write(content)
+                    #open('/Users/luocheng/Documents/pycharmproj/'+query+str(crawlIndex)+'.html','w').write(content)
                     q.stopCrawl = 1
                     q.resultnum = resultnum
                     q.lastcrawledpage = crawlIndex-1
@@ -53,17 +54,10 @@ class SearchResultHub:
                     sr_list = SearchResult.objects.filter(query=query)
                     return sorted(sr_list, key=lambda x:x.rank)[beginIndex:min(beginIndex+number,len(sr_list))]
                 else:
-                    print 'MERGING RESULTS',len(parsedResults)
-                    for r in parsedResults:
-                        soup = BeautifulSoup(r,from_encoding='utf8').find('div', class_='rb')
-                        if soup.has_attr('id'):
-                            soup['id'] = 'rb_'+str(resultnum)
-                            robj = SearchResult(query=query, rank=resultnum, result_id='rb_'+str(resultnum), content=str(soup))
-                            robj.save()
-                            resultnum +=1
-                        else:
-                            print "THE RESULT IS NOT VALID",resultnum
-                    crawlIndex +=1
+                    print 'MERGING RESULTS', len(parsedResults)
+                    resultnum = self.insert_into_db(parsedResults, query, resultnum)
+                    print 'INSERT INTO DATABASE', resultnum
+                    crawlIndex += 1
                     q.resultnum = resultnum
                     # TODO recheck  the lastcrawledpage
                     q.lastcrawledpage =  crawlIndex -1
@@ -73,9 +67,8 @@ class SearchResultHub:
 
 
         else:
-
             sr_list = SearchResult.objects.filter(query=query)
-            print 'ENOUGH RESULTS',beginIndex,number,len(sr_list)
+            print 'ENOUGH RESULTS', beginIndex, number, len(sr_list)
 
             return sorted(sr_list, key=lambda x:x.rank)[beginIndex:beginIndex+number]
 
@@ -88,6 +81,31 @@ class SearchResultHub:
         return min(len(sr_list), 90)
 
 
+    @transaction.commit_manually
+    def insert_into_db(self, parsedResults, query, resultnum):
+        num = resultnum
+        try:
+            for r in parsedResults:
+                soup = BeautifulSoup(r,from_encoding='utf8').find('div', class_='rb')
+                if soup.has_attr('id'):
+                    soup['id'] = 'rb_'+str(resultnum)
+                    robj = SearchResult.objects.create(query=query,
+                                                       rank=num,
+                                                       result_id='rb_'+str(num),
+                                                       content=str(soup))
+                    robj.save()
+                    num += 1
+                else:
+                    print "THE RESULT IS NOT VALID", resultnum
+        except Exception as e:
+            print "roll back!"
+            print e
+            transaction.rollback()
+            return resultnum
+        else:
+            print "commit success!"
+            transaction.commit()
+            return num
 
     def test(self):
         for item in self.getResult(query='清华大学',beginIndex=1,number=10):

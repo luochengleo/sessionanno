@@ -41,7 +41,7 @@ def insertMessageToDB(message):
                 continue
             log = fromString(line)
             log.save()
-    except:
+    except Exception:
         transaction.rollback()
     else:
         transaction.commit()
