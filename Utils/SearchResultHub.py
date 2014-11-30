@@ -61,8 +61,11 @@ class SearchResultHub:
 
 
     def getCount(self, query):
-        sr_list = SearchResult.objects.filter(query=query)
-        return min(len(sr_list), 90)
+        # sr_list = SearchResult.objects.filter(query=query)
+        # modified by luocheng;
+
+        return 90
+        # return min(len(sr_list), 90)
 
 
 
