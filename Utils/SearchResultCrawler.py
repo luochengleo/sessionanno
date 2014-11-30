@@ -9,7 +9,7 @@ class SearchResultCrawler:
     def __init__(self):
         pass
     def crawl(self,query,index=1):
-        url ='http://www.sogou.com/web?query='+urllib.quote(query.encode('utf8'))+'&num=10&page='+str(index)+'&ie=utf8'
+        url ='http://www.sogou.com/web?query='+urllib.quote(query.encode('utf8'))+'&num=50&page='+str(index)+'&ie=utf8'
         print url
         try:
             webpage = urllib2.urlopen(url).read()

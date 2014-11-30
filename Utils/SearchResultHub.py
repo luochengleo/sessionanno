@@ -17,10 +17,10 @@ class SearchResultHub:
 
         print 'searching in database'
 
-        queries = Query.objects.filter(query=query)
+        queries = Query.objects.filter(content=query)
 
         if len(queries) ==0:
-            q = Query()
+            q = Query(content=query,resultnum=0,recomm='',lastcrawledpage=0)
         else:
             q = queries[0]
 
@@ -28,71 +28,34 @@ class SearchResultHub:
         srpp = SearchResultPageParser()
         results = list()
 
-        crawlIndex =
-        resultnum = 0
+        crawlIndex =q.lastcrawledpage+1
+        resultnum = q.resultnum
+
+
         while resultnum < beginIndex + number:
             content = src.crawl(query, crawlIndex)
             for r in srpp.parse(content):
                 soup = BeautifulSoup(r,from_encoding='utf8').find('div', class_='rb')
                 if soup.has_attr('id'):
                     soup['id'] = 'rb_'+str(resultnum)
-                    robj = SearchResult(query=query, rank=resultnum, result_id='rb_'+str(count), content=str(soup))
+                    robj = SearchResult(query=query, rank=resultnum, result_id='rb_'+str(resultnum), content=str(soup))
                     robj.save()
                     resultnum +=1
                 else:
                     print "THE RESULT IS NOT VALID",resultnum
             crawlIndex +=1
 
-
+        q.resultnum = resultnum
+        # TODO recheck  the lastcrawledpage
+        q.lastcrawledpage =  crawlIndex -1
 
         q.save()
 
-
-
-        else:
-            src = SearchResultCrawler()
-            srpp = SearchResultPageParser()
-
-
-
-
         sr_list = SearchResult.objects.filter(query=query)
-        print len(sr_list)
+        return sorted(sr_list, key=lambda x:x.rank)[beginIndex:beginIndex+number]
 
-        if len(sr_list) > 0:
-            if beginIndex + number < len(sr_list):
-                return sr_list[beginIndex: beginIndex + number]
-            else:
-                return sr_list[beginIndex:]
-        else:
-            t1 = time.time()
-            print 'BEGIN CRAWLING'
-            src = SearchResultCrawler()
-            srpp = SearchResultPageParser()
-            results = list()
-            for page in range(1, 3, 1):
-                print 'crawling page', page
-                for r in srpp.parse(src.crawl(query, page)):
-                    results.append(r)
-            count = 0
-            t2 = time.time()
-            print 'FINISH CRAWLING, USE TIME',t2-t1
-            for r in results:
-                soup = BeautifulSoup(r, from_encoding='utf8').find('div', class_='rb')
-                if soup.has_attr('id'):
-                    soup['id'] = 'rb_'+str(count)
-                    robj = SearchResult(query=query, rank=count, result_id='rb_'+str(count), content=str(soup))
-                    robj.save()
-                    count += 1
-                else:
-                    print 'do not have key id'
-            t3 = time.time()
-            print 'FINISHING INSERT INTO DB USE TIME',t3-t2
-            if len(results) > 0:
-                return self.getResult(query, beginIndex, number)
-            else:
-                #if there is no match, just return empty list
-                return []
+
+
 
 
 
