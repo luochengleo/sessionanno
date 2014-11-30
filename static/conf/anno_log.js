@@ -36,7 +36,7 @@ function questionnaire_button_on_click() {
     message += "\tTASK=" + currentTaskID;
     message += "\tACTION=ANSWER_QUESTION";
     message += "\tINFO:";
-    message += "\tanswer=" + encodeURIComponent(text) + "\n";
+    message += "\tanswer=" + text + "\n";
     var log_url = "http://" + server_site + ":8000/QuestionnaireService/";
     $.ajax({
         type: 'POST',

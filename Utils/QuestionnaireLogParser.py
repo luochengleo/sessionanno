@@ -16,7 +16,7 @@ def fromString(line):
     studentID = patterns['USER'].search(line).group(1)
     task_id = patterns['TASK'].search(line).group(1)
     info = info_patterns.search(line).group(1)
-    answer = urllib.unquote(anno_info_patterns['answer'].search(info).group(1))
+    answer = anno_info_patterns['answer'].search(info).group(1)
     anno_log_obj = QuestionnaireAnswer.objects.create(studentID=studentID,
                                 task_id=task_id,
                                 answer=answer,
