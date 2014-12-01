@@ -88,7 +88,7 @@ class SearchResultHub:
             for r in parsedResults:
                 soup = BeautifulSoup(r,from_encoding='utf8').find('div', class_='rb')
                 if soup.has_attr('id'):
-                    soup['id'] = 'rb_'+str(resultnum)
+                    soup['id'] = 'rb_'+str(num)
                     robj = SearchResult.objects.create(query=query,
                                                        rank=num,
                                                        result_id='rb_'+str(num),
