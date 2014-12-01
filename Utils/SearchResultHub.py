@@ -2,6 +2,7 @@
 __author__ = 'cheng'
 
 from anno.models import *
+from django.db import transaction, models
 from Utils.SearchResultCrawler import SearchResultCrawler
 from Utils.SearchResultPageParser import SearchResultPageParser
 from bs4 import BeautifulSoup
@@ -17,91 +18,94 @@ class SearchResultHub:
 
         print 'searching in database'
 
-        queries = Query.objects.filter(query=query)
+        queries = Query.objects.filter(content=query)
 
         if len(queries) ==0:
-            q = Query()
+            q = Query(content=query,resultnum=0,recomm='',lastcrawledpage=0,stopCrawl=0)
         else:
             q = queries[0]
+
+
 
         src = SearchResultCrawler()
         srpp = SearchResultPageParser()
         results = list()
+        crawlIndex =q.lastcrawledpage+1
+        resultnum = q.resultnum
 
-        crawlIndex =
-        resultnum = 0
-        while resultnum < beginIndex + number:
-            content = src.crawl(query, crawlIndex)
-            for r in srpp.parse(content):
-                soup = BeautifulSoup(r,from_encoding='utf8').find('div', class_='rb')
-                if soup.has_attr('id'):
-                    soup['id'] = 'rb_'+str(resultnum)
-                    robj = SearchResult(query=query, rank=resultnum, result_id='rb_'+str(count), content=str(soup))
-                    robj.save()
-                    resultnum +=1
+
+        if resultnum <=beginIndex+number or resultnum< beginIndex+2*number:
+            if q.stopCrawl == 1:
+                print 'STOP CRAWLING'
+                sr_list = SearchResult.objects.filter(query=query)
+                return sorted(sr_list, key=lambda x:x.rank)[beginIndex:min(beginIndex+number,len(sr_list))]
+            else:
+                print 'BEGIN CRAWLING'
+                content = src.crawl(query, crawlIndex)
+                print 'FINISH CRAWLING'
+                parsedResults = srpp.parse(content)
+                if len(parsedResults) == 0:
+                    print 'WARNING: No Results on Web Page',query,crawlIndex
+                    #open('/Users/luocheng/Documents/pycharmproj/'+query+str(crawlIndex)+'.html','w').write(content)
+                    q.stopCrawl = 1
+                    q.resultnum = resultnum
+                    q.lastcrawledpage = crawlIndex-1
+                    q.save()
+                    sr_list = SearchResult.objects.filter(query=query)
+                    return sorted(sr_list, key=lambda x:x.rank)[beginIndex:min(beginIndex+number,len(sr_list))]
                 else:
-                    print "THE RESULT IS NOT VALID",resultnum
-            crawlIndex +=1
-
-
-
-        q.save()
-
+                    print 'MERGING RESULTS', len(parsedResults)
+                    resultnum = self.insert_into_db(parsedResults, query, resultnum)
+                    print 'INSERT INTO DATABASE', resultnum
+                    crawlIndex += 1
+                    q.resultnum = resultnum
+                    # TODO recheck  the lastcrawledpage
+                    q.lastcrawledpage =  crawlIndex -1
+                    q.save()
+                    sr_list = SearchResult.objects.filter(query=query)
+                    return sorted(sr_list, key=lambda x:x.rank)[beginIndex:min(beginIndex+number,len(sr_list))]
 
 
         else:
-            src = SearchResultCrawler()
-            srpp = SearchResultPageParser()
+            sr_list = SearchResult.objects.filter(query=query)
+            print 'ENOUGH RESULTS', beginIndex, number, len(sr_list)
 
-
-
-
-        sr_list = SearchResult.objects.filter(query=query)
-        print len(sr_list)
-
-        if len(sr_list) > 0:
-            if beginIndex + number < len(sr_list):
-                return sr_list[beginIndex: beginIndex + number]
-            else:
-                return sr_list[beginIndex:]
-        else:
-            t1 = time.time()
-            print 'BEGIN CRAWLING'
-            src = SearchResultCrawler()
-            srpp = SearchResultPageParser()
-            results = list()
-            for page in range(1, 3, 1):
-                print 'crawling page', page
-                for r in srpp.parse(src.crawl(query, page)):
-                    results.append(r)
-            count = 0
-            t2 = time.time()
-            print 'FINISH CRAWLING, USE TIME',t2-t1
-            for r in results:
-                soup = BeautifulSoup(r, from_encoding='utf8').find('div', class_='rb')
-                if soup.has_attr('id'):
-                    soup['id'] = 'rb_'+str(count)
-                    robj = SearchResult(query=query, rank=count, result_id='rb_'+str(count), content=str(soup))
-                    robj.save()
-                    count += 1
-                else:
-                    print 'do not have key id'
-            t3 = time.time()
-            print 'FINISHING INSERT INTO DB USE TIME',t3-t2
-            if len(results) > 0:
-                return self.getResult(query, beginIndex, number)
-            else:
-                #if there is no match, just return empty list
-                return []
-
-
+            return sorted(sr_list, key=lambda x:x.rank)[beginIndex:beginIndex+number]
 
 
     def getCount(self, query):
         sr_list = SearchResult.objects.filter(query=query)
+        # modified by luocheng;
+
+        # return 90
         return min(len(sr_list), 90)
 
 
+    @transaction.commit_manually
+    def insert_into_db(self, parsedResults, query, resultnum):
+        num = resultnum
+        try:
+            for r in parsedResults:
+                soup = BeautifulSoup(r,from_encoding='utf8').find('div', class_='rb')
+                if soup.has_attr('id'):
+                    soup['id'] = 'rb_'+str(num)
+                    robj = SearchResult.objects.create(query=query,
+                                                       rank=num,
+                                                       result_id='rb_'+str(num),
+                                                       content=str(soup))
+                    robj.save()
+                    num += 1
+                else:
+                    print "THE RESULT IS NOT VALID", resultnum
+        except Exception as e:
+            print "roll back!"
+            print e
+            transaction.rollback()
+            return resultnum
+        else:
+            print "commit success!"
+            transaction.commit()
+            return num
 
     def test(self):
         for item in self.getResult(query='清华大学',beginIndex=1,number=10):

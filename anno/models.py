@@ -22,13 +22,14 @@ class Task(models.Model):
     content = models.CharField(max_length=1000)
     task_id = models.IntegerField()
     init_query = models.CharField(max_length=1000)
+    question = models.CharField(max_length=1000)
 
 class Query(models.Model):
     content = models.CharField(max_length=100)
-    task = models.ManyToManyField(Task)
     resultnum = models.IntegerField()
     recomm = models.CharField(max_length=1000)
     lastcrawledpage = models.IntegerField()
+    stopCrawl = models.IntegerField()
 
 
 class SearchResult(models.Model):
@@ -64,11 +65,20 @@ class Annotation(models.Model):
     score = models.IntegerField()
     content = models.CharField(max_length=5000)
 
+
 class SessionAnnotation(models.Model):
     studentID = models.CharField(max_length=50)
     task_id = models.IntegerField()
     score = models.IntegerField()
     content = models.CharField(max_length=5000)
+
+
+class QuestionnaireAnswer(models.Model):
+    studentID = models.CharField(max_length=50)
+    task_id = models.IntegerField()
+    answer = models.CharField(max_length=5000)
+    content = models.CharField(max_length=5000)
+
 
 if __name__ == '__main__':
     task = Task(connect='hello world', task_id=0)

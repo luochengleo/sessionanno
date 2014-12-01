@@ -2,30 +2,26 @@
 __author__ = 'defaultstr'
 from anno.models import *
 from django.db import transaction, models
+import urllib
 import re
 
 
-patterns = {key: re.compile('%s=(.*?)\\t' % key) for key in ['TIMESTAMP', 'USER', 'TASK', 'QUERY', 'ACTION']}
+patterns = {key: re.compile('%s=(.*?)\\t' % key) for key in ['TIMESTAMP', 'USER', 'TASK', 'ACTION']}
 info_patterns = re.compile('INFO:\\t(.*?)$')
-anno_info_patterns = {key: re.compile('%s=(.*?)\\t' % key) for key in ['id', 'src']}
-anno_info_patterns['score'] = re.compile('score=(.*?)$')
+anno_info_patterns = {}
+anno_info_patterns['answer'] = re.compile('answer=(.*?)$')
 
 
 def fromString(line):
     studentID = patterns['USER'].search(line).group(1)
     task_id = patterns['TASK'].search(line).group(1)
-    query = patterns['QUERY'].search(line).group(1)
     info = info_patterns.search(line).group(1)
-    result_id = anno_info_patterns['id'].search(info).group(1)
-    result_url = anno_info_patterns['src'].search(info).group(1)
-    score = int(anno_info_patterns['score'].search(info).group(1))
-    anno_log_obj = Annotation.objects.create(studentID=studentID,
+    answer = anno_info_patterns['answer'].search(info).group(1)
+    anno_log_obj = QuestionnaireAnswer.objects.create(studentID=studentID,
                                 task_id=task_id,
-                                query=query,
-                                result_id=result_id,
-                                result_url=result_url,
-                                score=score,
+                                answer=answer,
                                 content=line)
+    print anno_log_obj
     return anno_log_obj
 
 
@@ -41,4 +37,5 @@ def insertMessageToDB(message):
     except Exception:
         transaction.rollback()
     else:
+        print "commit success!"
         transaction.commit()

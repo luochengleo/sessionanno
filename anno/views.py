@@ -7,6 +7,7 @@ from Utils.SearchResultHub import SearchResultHub
 from Utils import LogParser
 from Utils import AnnoLogParser
 from Utils import SessionAnnoLogParser
+from Utils import QuestionnaireLogParser
 from Utils.LogHub import LogHub
 from django.template import loader
 from django import template
@@ -107,6 +108,13 @@ def annotation(request, taskid, query):
     return HttpResponse(t.render(c))
 
 
+def questionnaire(request, task_id):
+    task = Task.objects.get(id=int(task_id))
+    t = template.Template(open('templates/questionnaire.html').read())
+    c = template.Context({'task': task})
+    return HttpResponse(t.render(c))
+
+
 @csrf_exempt
 def log(request):
     message = urllib.unquote(request.POST[u'message']).encode('utf8')
@@ -115,6 +123,7 @@ def log(request):
     LogParser.insertMessageToDB(message)
     return HttpResponse('OK')
 
+
 @csrf_exempt
 def log_annotation(request):
     message = urllib.unquote(request.POST[u'message'])
@@ -122,9 +131,19 @@ def log_annotation(request):
     AnnoLogParser.insertMessageToDB(message)
     return HttpResponse('OK')
 
+
 @csrf_exempt
 def log_session_annotation(request):
     message = urllib.unquote(request.POST[u'message'])
     print message
     SessionAnnoLogParser.insertMessageToDB(message)
     return HttpResponse('OK')
+
+
+@csrf_exempt
+def log_questionnaire(request):
+    message = urllib.unquote(request.POST[u'message'])
+    print message
+    QuestionnaireLogParser.insertMessageToDB(message)
+    return HttpResponse('OK')
+

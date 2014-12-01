@@ -8,7 +8,7 @@ register = template.Library()
 
 @register.filter
 def add_annotation(value):
-    soup = BeautifulSoup(value, from_encoding='utf8')
+    soup = BeautifulSoup(value)
     div = soup.find('div')
     div['style'] = 'float:left; width:550px'
     # TODO
