@@ -27,6 +27,19 @@ $(function () {
     }
 });
 
+$(function () {
+    $(".annotation_link").click(function () {
+        var node = $(this).get(0);
+        var parent_node = node.parentNode;
+        while (parent_node != null) {
+            if (parent_node.className == "annotation_cell") {
+                $(parent_node).find("img").css("visibility", "visible");
+            }
+            parent_node = parent_node.parentNode;
+        }
+    });
+});
+
 function questionnaire_button_on_click() {
     var text = $("#answer").val();
     var message = "";
@@ -38,18 +51,20 @@ function questionnaire_button_on_click() {
     message += "\tINFO:";
     message += "\tanswer=" + text + "\n";
     var log_url = "http://" + server_site + ":8000/QuestionnaireService/";
-    $.ajax({
-        type: 'POST',
-        url: log_url,
-        data: {message: message},
-        async: false,
-        complete: function (jqXHR, textStatus) {
-            //alert(textStatus + "----" + jqXHR.status + "----" + jqXHR.readyState);
-            //should we reset onbeforeunload here?
-            console.log("synchronously flush mouse log!")
-        }
-    });
-    window.close();
+    if (confirm("ok?")) {
+        $.ajax({
+            type: 'POST',
+            url: log_url,
+            data: {message: message},
+            async: false,
+            complete: function (jqXHR, textStatus) {
+                //alert(textStatus + "----" + jqXHR.status + "----" + jqXHR.readyState);
+                //should we reset onbeforeunload here?
+                console.log("synchronously flush questionnaire answer")
+            }
+        });
+        window.close();
+    }
 }
 
 function session_over_button_on_click() {
