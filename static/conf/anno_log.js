@@ -27,6 +27,19 @@ $(function () {
     }
 });
 
+$(function () {
+    $(".annotation_link").click(function () {
+        var node = $(this).get(0);
+        var parent_node = node.parentNode;
+        while (parent_node != null) {
+            if (parent_node.className == "annotation_cell") {
+                $(parent_node).find("img").css("visibility", "visible");
+            }
+            parent_node = parent_node.parentNode;
+        }
+    });
+});
+
 function questionnaire_button_on_click() {
     var text = $("#answer").val();
     var message = "";

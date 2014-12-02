@@ -34,11 +34,12 @@
 </div>
 <div class="annotation_list">
 <h2>提交查询列表</h2>
-<table>
     {%  for q in querylist %}
-    <tr><h3><a href="/annotation/{{ taskid }}/{{ q }}/" target="_blank">{{ q }}</a></h3></tr>
+    <div class="annotation_cell">
+        <img class="check" src="/static/conf/img/check.jpg">
+        <div><h3><a class="annotation_link" href="/annotation/{{ taskid }}/{{ q }}/" target="_blank">{{ q }}</a></h3></div>
+    </div>
     {% endfor %}
-</table>
 </div>
 
 <div class="annotation_footer">
