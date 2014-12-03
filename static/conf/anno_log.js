@@ -24,8 +24,21 @@ function get_set(url_str) {
 $(function () {
     if ($("#session_annotation")) {
         $("#session_annotation").raty('set', {number: 5, starOn: "/static/conf/img/star-on.png", starOff: "/static/conf/img/star-off.png"});
+        $("#session_annotation").raty('score', 1);
     }
 });
+
+$(function() {
+    if ($("#query_annotation")) {
+        $("#query_annotation").raty('set', {number: 5, starOn: "/static/conf/img/star-on.png", starOff: "/static/conf/img/star-off.png"});
+        $("#query_annotation").raty('score', 1);
+    }
+});
+
+window.onbeforeunload = function (e) {
+    return "";
+    //return ''
+};
 
 $(function () {
     $(".annotation_link").click(function () {
@@ -63,6 +76,7 @@ function questionnaire_button_on_click() {
                 console.log("synchronously flush questionnaire answer")
             }
         });
+        window.onbeforeunload = null;
         window.close();
     }
 }
@@ -91,6 +105,7 @@ function session_over_button_on_click() {
                 console.log("synchronously flush mouse log!")
             }
         });
+        window.onbeforeunload = null;
         location.href = "/questionnaire/" + currentTaskID + "/";
     }
 }
@@ -124,9 +139,29 @@ function over_button_on_click() {
             complete: function (jqXHR, textStatus) {
                 //alert(textStatus + "----" + jqXHR.status + "----" + jqXHR.readyState);
                 //should we reset onbeforeunload here?
-                console.log("synchronously flush mouse log!")
+                console.log("synchronously flush annotations!")
             }
         });
+        var sati_score = $("#query_annotation").raty("score");
+        message = "";
+        message += "TIMESTAMP=" + client_time;
+        message += "\tUSER=" + studentID;
+        message += "\tTASK=" + currentTaskID;
+        message += "\tQUERY=" + currentQuery;
+        message += "\tACTION=QUERY_SATISFACTION_ANNOTATION";
+        message += "\tINFO:";
+        message += "\tscore=" +  sati_score + "\n";
+        log_url = "http://" + server_site + ":8000/QuerySatisfactionService/";
+        $.ajax({
+            type: 'POST',
+            url: log_url,
+            data: {message: message},
+            async: false,
+            complete: function(jqXHR, textStatus) {
+                console.log("synchronously flush query satisfaction score!")
+            }
+        });
+        window.onbeforeunload = null;
         window.close();
     }
 }

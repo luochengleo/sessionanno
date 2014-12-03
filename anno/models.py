@@ -72,6 +72,12 @@ class SessionAnnotation(models.Model):
     score = models.IntegerField()
     content = models.CharField(max_length=5000)
 
+class QuerySatisfaction(models.Model):
+    studentID = models.CharField(max_length=50)
+    task_id = models.IntegerField()
+    query = models.CharField(max_length=100)
+    score = models.IntegerField()
+    content = models.CharField(max_length=5000)
 
 class QuestionnaireAnswer(models.Model):
     studentID = models.CharField(max_length=50)
