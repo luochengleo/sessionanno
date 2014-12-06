@@ -46,7 +46,8 @@ class SearchResultHub:
                 parsedResults = srpp.parse(content)
                 if len(parsedResults) == 0:
                     print 'WARNING: No Results on Web Page',crawlIndex
-                    #open('/Users/luocheng/Documents/pycharmproj/'+query+str(crawlIndex)+'.html','w').write(content)
+                    open(str(beginIndex)+'-'+str(crawlIndex)+'.html','w').write(content)
+                    print 'WRITING CONTENT'
                     q.stopCrawl = 1
                     q.resultnum = resultnum
                     q.lastcrawledpage = crawlIndex-1
