@@ -71,7 +71,6 @@ def tasks(request,sID):
     print 'len tlist',len(tlist)
     for t in tlist:
         print t.task_id
-        print t.content
     html = template.Template(open('templates/tasks.html').read())
 
 
