@@ -29,7 +29,7 @@ def current_datetime(request):
 
 def search(request,taskid,query,pageid):
 
-    print 'view search', query
+    # print 'view search', query
     srh = SearchResultHub()
     query = urllib.unquote(query)
 
@@ -100,7 +100,7 @@ def annotation(request, taskid, query):
         return HttpResponse('ERROR: UNKNOWN STUDENT ID')
     lh = LogHub()
     results = lh.getClickedResults(studentID, taskid, query)
-    print 'len result:', len(results)
+    # print 'len result:', len(results)
     t = template.Template(open('templates/annotation.html').read())
     c = template.Context({'resultlist': [r.content for r in results],
                           'taskid': taskid,
@@ -118,8 +118,8 @@ def questionnaire(request, task_id):
 @csrf_exempt
 def log(request):
     message = urllib.unquote(request.POST[u'message']).encode('utf8')
-    print message
-    print type(message)
+    # print message
+    # print type(message)
     LogParser.insertMessageToDB(message)
     return HttpResponse('OK')
 
@@ -127,7 +127,7 @@ def log(request):
 @csrf_exempt
 def log_annotation(request):
     message = urllib.unquote(request.POST[u'message'])
-    print message
+    # print message
     AnnoLogParser.insertMessageToDB(message)
     return HttpResponse('OK')
 
@@ -135,7 +135,7 @@ def log_annotation(request):
 @csrf_exempt
 def log_session_annotation(request):
     message = urllib.unquote(request.POST[u'message'])
-    print message
+    # print message
     SessionAnnoLogParser.insertMessageToDB(message)
     return HttpResponse('OK')
 
@@ -143,13 +143,13 @@ def log_session_annotation(request):
 @csrf_exempt
 def log_questionnaire(request):
     message = urllib.unquote(request.POST[u'message'])
-    print message
+    # print message
     QuestionnaireLogParser.insertMessageToDB(message)
     return HttpResponse('OK')
 
 @csrf_exempt
 def log_query_satisfaction(request):
     message = urllib.unquote(request.POST[u'message'])
-    print message
+    # print message
     QuerySatisfactionLogParser.insertMessageToDB(message)
     return HttpResponse('OK')
