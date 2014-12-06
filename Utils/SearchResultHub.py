@@ -45,7 +45,7 @@ class SearchResultHub:
                 print 'FINISH CRAWLING'
                 parsedResults = srpp.parse(content)
                 if len(parsedResults) == 0:
-                    print 'WARNING: No Results on Web Page',query,crawlIndex
+                    print 'WARNING: No Results on Web Page',crawlIndex
                     #open('/Users/luocheng/Documents/pycharmproj/'+query+str(crawlIndex)+'.html','w').write(content)
                     q.stopCrawl = 1
                     q.resultnum = resultnum
