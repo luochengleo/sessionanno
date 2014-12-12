@@ -27,7 +27,7 @@ if (studentID == "") {
 //var page_change_id = setInterval(page_change, 3000);
 //var mouse_tracking_id=setInterval(log_mouse_tracking, 1000);
 document.onmousemove = log_mouse_tracking;
-send_mouse_info(formInfo("BEGIN_SEARCH", ""));
+send_mouse_info(formInfo("BEGIN_SEARCH", "startTime="+(new Date()).getTime()));
 
 var isTargetWindow = true;
 $(window).focus(function () {
@@ -255,8 +255,7 @@ function log_mouse_tracking(ev) {
 
 function time_info() {
     var new_time_stamp = (new Date()).getTime();
-    var time_point = new_time_stamp - mouse_tracking_baseline_stamp;
-    return time_point;
+    return new_time_stamp;
 }
 
 function send_mouse_info(info) {

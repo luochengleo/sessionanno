@@ -14,6 +14,7 @@ from django.template import loader
 from django import template
 from django.views.decorators.csrf import csrf_exempt
 from django.db import transaction, models
+import random
 
 import sys
 import urllib
@@ -66,9 +67,11 @@ def validate(request,taskid):
 def login(request):
     return HttpResponse(open('templates/login.html').read())
 
-def tasks(request,sID):
-    tlist = Task.objects.all()
-    print 'len tlist',len(tlist)
+def tasks(request, sID):
+    tlist = list(Task.objects.all())
+    random.seed(int(sID))
+    random.shuffle(tlist)
+    print 'len tlist', len(tlist)
     for t in tlist:
         print t.task_id
     html = template.Template(open('templates/tasks.html').read())
