@@ -81,6 +81,33 @@ function questionnaire_button_on_click() {
     }
 }
 
+function description_button_on_click() {
+    var text = $("#answer").val();
+    var message = "";
+    var client_time = (new Date()).getTime();
+    message += "TIMESTAMP=" + client_time;
+    message += "\tUSER=" + studentID;
+    message += "\tTASK=" + currentTaskID;
+    message += "\tACTION=DESCRIPTION";
+    message += "\tINFO:";
+    message += "\tanswer=" + text + "\n";
+    var log_url = "http://" + server_site + ":8000/QuestionnaireService/";
+    if (confirm("ok?")) {
+        $.ajax({
+            type: 'POST',
+            url: log_url,
+            data: {message: message},
+            async: false,
+            complete: function (jqXHR, textStatus) {
+                //alert(textStatus + "----" + jqXHR.status + "----" + jqXHR.readyState);
+                //should we reset onbeforeunload here?
+                console.log("synchronously flush questionnaire answer")
+            }
+        });
+        window.onbeforeunload = null;
+        location.href = "/search/" + currentTaskID + "/" + initQuery + "/1/";
+    }
+}
 function session_over_button_on_click() {
     var score = $("#session_annotation").raty('score');
     var message = "";

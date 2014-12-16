@@ -68,7 +68,9 @@ def login(request):
     return HttpResponse(open('templates/login.html').read())
 
 def tasks(request, sID):
-    tlist = list(Task.objects.all())
+    tlist = list(Task.objects.filter(task_id__lte=12))
+    if sID == '2013310564':
+        tlist = [Task.objects.get(task_id=13)]
     random.seed(int(sID))
     random.shuffle(tlist)
     print 'len tlist', len(tlist)
@@ -112,9 +114,16 @@ def annotation(request, taskid, query):
 
 
 def questionnaire(request, task_id):
-    task = Task.objects.get(id=int(task_id))
+    task = Task.objects.get(task_id=int(task_id))
     t = template.Template(open('templates/questionnaire.html').read())
     c = template.Context({'task': task})
+    return HttpResponse(t.render(c))
+
+
+def description(request, task_id, init_query):
+    task = Task.objects.get(task_id=int(task_id))
+    t = template.Template(open('templates/description.html').read())
+    c = template.Context({'task': task, 'initQuery': init_query})
     return HttpResponse(t.render(c))
 
 

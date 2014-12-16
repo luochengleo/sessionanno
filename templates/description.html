@@ -9,6 +9,7 @@
     <!-- global variables: current task id, current query -->
     <script type="text/javascript">
         currentTaskID = "{{ task.task_id }}";
+        initQuery = "{{ initQuery }}";
    </script>
    	<script type="text/javascript" src="/static/conf/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="/static/conf/jquery-min.js"></script>
@@ -23,21 +24,17 @@
 <body>
 <div class="annotation_header">
 <div>
-    <h2>请回答以下问题</h2>
-    <p>任务描述：{{ task.content }}</p>
-    <p style="color: orangered">问题:{{ task.question }}</p>
+    <h2>请用自己的语言复述一下查询任务:</h2>
 </div>
 </div>
 <div class="annotation_list">
-    <!--
     <div class="annotation_cell">
         <textarea name="answer" id="answer">
         </textarea>
     </div>
-    -->
 </div>
 <div class="annotation_footer">
-    <button class="WCOverButton button blue close-reveal-modal"  type="Button" onclick="questionnaire_button_on_click();">完成任务</button>
+    <button class="WCOverButton button blue close-reveal-modal"  type="Button" onclick="description_button_on_click();">开始查询</button>
 </div>
 </body>
 </html>
