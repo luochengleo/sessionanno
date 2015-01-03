@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/static/conf/annotation.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="/static/conf/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="/static/conf/jquery-min.js"></script>
+	<script type="text/javascript" src="/static/conf/wc_preprocess.js"></script>
+	<script type="text/javascript" src="/static/conf/jquery.bgpos.js"></script>
+	<script type="text/javascript" src="/static/conf/jquery.reveal.js"></script>
+	<script type="text/javascript" src="/static/conf/jquery.raty.js"></script>
+	<script type="text/javascript" src="/static/conf/jquery.raty.min.js"></script>
+    <script type="text/javascript" src="/static/conf/anno_log.js"></script>
+    <title>All tasks</title>
+</head>
+<body>
+
+<div class="annotation_header">
+<h1 align="center">清华大学计算机系信息检索组</h1>
+<h1 align="center"> 欢迎您！</h1>
+<script>
+    var strcookie=document.cookie;
+    var arrcookie=strcookie.split("; ");
+    var sid = arrcookie[0].split('=')[1]
+
+</script>
+</div>
+<div class="annotation_list">
+<table style="width: 80%">
+<tr>
+    <td>No.</td>
+    <td>studentID</td>
+    <td>task</td>
+    <td>query</td>
+    <td>page</td>
+    <td>link</td>
+</tr>
+{% for query in queries %}
+    <tr>
+        <td> {{ forloop.counter }}</td>
+        <td> {{ query.studentID }}</td>
+        <td> {{ query.task_id }}</td>
+        <td> {{ query.query }}</td>
+        <td> {{ query.page }}</td>
+        <td><a href ='/SERP/{{ query.task_id }}/{{ query.query }}/{{ query.page }}/' target="_blank">link</a></td>
+    </tr>
+{% endfor %}
+</table>
+</div>
+
+</body>
+</html>

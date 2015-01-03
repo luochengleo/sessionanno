@@ -9,6 +9,7 @@ from Utils import AnnoLogParser
 from Utils import SessionAnnoLogParser
 from Utils import QuestionnaireLogParser
 from Utils import QuerySatisfactionLogParser
+from Utils import SERPAnalyzer
 from Utils.LogHub import LogHub
 from django.template import loader
 from django import template
@@ -28,7 +29,8 @@ def current_datetime(request):
     html = "<html><body>It is now %s.</body></html>" % now
     return HttpResponse(html)
 
-def search(request,taskid,query,pageid):
+
+def search(request, taskid, query, pageid):
 
     # print 'view search', query
     srh = SearchResultHub()
@@ -57,6 +59,33 @@ def search(request,taskid,query,pageid):
     # fout.close()
     return HttpResponse(t.render(c))
 
+
+def show_page(request, taskid, query, pageid):
+    srh = SearchResultHub()
+    query = urllib.unquote(query)
+
+    results = srh.getResult(query, 10*(int(pageid)-1), 10)
+    results_count = srh.getCount(query)
+    max_pageid = results_count / 10
+
+    t = template.Template(open('templates/out_page.html').read())
+    next_pageid = ''
+    if int(pageid) < max_pageid:
+        next_pageid = str(int(pageid)+1)
+    page_str = ''.join([str(x) for x in range(1, max_pageid+1)])
+    result_list = SERPAnalyzer.add_character_bounding_box(results)
+    c = template.Context({'resultlist': result_list,
+                          'taskid': taskid,
+                          'query': query,
+                          'pageid': pageid,
+                          'page_str': page_str,
+                          'next_pageid': next_pageid})
+    # fout = open('temp/test.html','w')
+    # fout.write(t.render(c).decode('utf8','ignore').encode('utf8'))
+    # fout.close()
+    return HttpResponse(t.render(c))
+
+
 def train(request,userid):
     html = '<html><body> It is the '+userid +' train task </body></html>'
     return HttpResponse(html)
@@ -77,11 +106,7 @@ def tasks(request, sID):
     for t in tlist:
         print t.task_id
     html = template.Template(open('templates/tasks.html').read())
-
-
     c = template.Context({'tasks':tlist,'tasknum':len(tlist)})
-
-
     respon = HttpResponse(html.render(c))
     respon.set_cookie('studentID', value=sID, max_age=None, expires=None, path='/', domain=None, secure=None)
     return respon
@@ -127,6 +152,13 @@ def description(request, task_id, init_query):
     return HttpResponse(t.render(c))
 
 
+def list_all_queries(request):
+    results = LogParser.get_queries(None)
+    t = template.Template(open('templates/queries.html').read())
+    c = template.Context({'queries': results})
+    return HttpResponse(t.render(c))
+
+
 @csrf_exempt
 def log(request):
     message = urllib.unquote(request.POST[u'message']).encode('utf8')
@@ -164,4 +196,12 @@ def log_query_satisfaction(request):
     message = urllib.unquote(request.POST[u'message'])
     # print message
     QuerySatisfactionLogParser.insertMessageToDB(message)
+    return HttpResponse('OK')
+
+@csrf_exempt
+def debug_log(request):
+    message = urllib.unquote(request.POST[u'message'])
+    print message
+    fout = open('log.txt', 'a')
+    print >>fout, message.encode('utf8')
     return HttpResponse('OK')
