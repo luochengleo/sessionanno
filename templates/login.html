@@ -29,12 +29,37 @@
             }
             return true;
         }
+
+        function redirect2anno() {
+            var username = document.getElementById("username2");
+            var pass = document.getElementById("password2");
+            if (username.value == "") {
+                alert("请输入用户名");
+                username.focus();
+                return;
+            }
+            else if (pass.value == "") {
+                alert("请输入密码");
+                return;
+            }
+            else if ((pass.value == "b") && (!isNaN(username.value))) {
+                window.location.href='/recordannolist/'+username.value
+                return;
+            }
+            else {
+                alert("登录失败，请检查用户名和密码是否有误！");
+                alert(username.value);
+                return;
+            }
+            return true;
+        }
     </script>
 </head>
 <body>
 <img style="text-align: center" src="http://www.thuir.cn/cms/uploads/images/IR4.png" align="middle">
 <h1 style="color:blue; text-align:center">清华大学计算机系信息检索组多功能实验平台</h1>
 
+<h2 style="text-align:center"> 实验系统登陆 </h2>
 <form align=center>
     <table align="center">
         <tr align=center>
@@ -53,6 +78,32 @@
 
     </table>
 </form>
+<div style="text-align: center">
+    <p>登陆说明：请输入你的10位学号登陆，密码为"a"</p>
+</div>
+<hr>
+
+
+<h2 style="text-align:center"> 标注系统登陆 </h2>
+<form align=center>
+    <table align="center">
+        <tr align=center>
+            <td>用户名:</td>
+            <td><input type="text" name="username2" id="username2"></td>
+        </tr>
+        <tr align=center>
+            <td>密 码:</td>
+            <td><input type="password" name="password2" id="password2"></td>
+        </tr>
+
+        <tr align=center>
+            <td colspan="2"><input type="button" value="登 录" onclick="redirect2anno()"/>
+                <input type="reset" value="重 置"/></td>
+        </tr>
+
+    </table>
+</form>
+
 <div style="text-align: center">
     <p>登陆说明：请输入你的10位学号登陆，密码为"a"</p>
 </div>

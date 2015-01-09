@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>录音标注系统</title>
+</head>
+<body>
+<h1>当前标注第{{ task.task_id }}个任务</h1>
+
+<p>任务描述：{{ task.content }}</p>
+
+<p>任务问题：{{ task.question }}</p>
+<hr>
+<div>
+    {% for r in records %}
+        <div>
+            <a> 回答被试编码:{{ r.studentID }}</a>
+            <audio controls>
+                <source src="{{ r.filename }}" type="audio/mpeg">
+            </audio>
+            <input type="text" name="score">
+            <input type="button" value="提交" onclick="submit()"/>
+
+        </div>
+        <hr>
+
+    {% endfor %}
+</body>
+</html>

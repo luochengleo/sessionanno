@@ -85,6 +85,17 @@ class QuestionnaireAnswer(models.Model):
     answer = models.CharField(max_length=5000)
     content = models.CharField(max_length=5000)
 
+class RecordFile(models.Model):
+    studentID = models.CharField(max_length=50)
+    task_id = models.IntegerField()
+    filepath = models.CharField(max_length=1000)
+
+class RecordAnnotation(models.Model):
+    annotatorID = models.CharField(max_length=50)
+    studentID = models.CharField(max_length=50)
+    task_id = models.IntegerField()
+    score = models.FloatField()
+
 
 if __name__ == '__main__':
     task = Task(connect='hello world', task_id=0)
