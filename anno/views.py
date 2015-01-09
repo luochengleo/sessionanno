@@ -20,6 +20,7 @@ import random
 import sys
 import urllib
 from anno.models import Task
+from anno.models import RecordFile
 reload(sys)
 def hello(request):
     return HttpResponse('hello world')
@@ -122,7 +123,6 @@ def annolist(request, taskid):
     c = template.Context({'querynum': len(queries), 'taskid': taskid, 'querylist': queries})
     return HttpResponse(html.render(c))
 
-
 def annotation(request, taskid, query):
     try:
         studentID = request.COOKIES['studentID']
@@ -205,3 +205,19 @@ def debug_log(request):
     fout = open('log.txt', 'a')
     print >>fout, message.encode('utf8')
     return HttpResponse('OK')
+
+def recordannolist(request,sID):
+
+    respon = HttpResponse(open('templates/recordannolist.html').read())
+    respon.set_cookie('studentID', value=sID, max_age=None, expires=None, path='/', domain=None, secure=None)
+    return respon
+
+def recordanno(request,task_id):
+    t = template.Template(open('templates/recordanno.html').read())
+    print task_id,type(task_id)
+    rlist = list()
+    r = RecordFile.objects.filter(task_id=int(task_id))
+    task = Task.objects.get(task_id = int(task_id))
+    c = template.Context({'task':task, 'records' : list(r)})
+    respon = HttpResponse(t.render(c))
+    return respon
