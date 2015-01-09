@@ -1,6 +1,7 @@
 #coding=utf8
 
 from django.shortcuts import render
+
 from django.http import HttpResponse
 import datetime
 from Utils.SearchResultHub import SearchResultHub
@@ -10,6 +11,7 @@ from Utils import SessionAnnoLogParser
 from Utils import QuestionnaireLogParser
 from Utils import QuerySatisfactionLogParser
 from Utils import SERPAnalyzer
+from Utils import RecordAnnoLogParser
 from Utils.LogHub import LogHub
 from django.template import loader
 from django import template
@@ -199,6 +201,14 @@ def log_query_satisfaction(request):
     return HttpResponse('OK')
 
 @csrf_exempt
+def log_record_annotation(request):
+    message = urllib.unquote(request.POST[u'message'])
+    # print message
+    RecordAnnoLogParser.insertMessageToDB(message)
+    return HttpResponse('OK')
+
+
+@csrf_exempt
 def debug_log(request):
     message = urllib.unquote(request.POST[u'message'])
     print message
@@ -206,10 +216,9 @@ def debug_log(request):
     print >>fout, message.encode('utf8')
     return HttpResponse('OK')
 
-def recordannolist(request,sID):
-
+def recordannolist(request, annotatorID):
     respon = HttpResponse(open('templates/recordannolist.html').read())
-    respon.set_cookie('studentID', value=sID, max_age=None, expires=None, path='/', domain=None, secure=None)
+    respon.set_cookie('annotatorID', value=annotatorID, max_age=None, expires=None, path='/', domain=None, secure=None)
     return respon
 
 def recordanno(request,task_id):

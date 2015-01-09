@@ -2,6 +2,12 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <script type="text/javascript" src="/static/conf/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="/static/conf/jquery-min.js"></script>
+	<script type="text/javascript" src="/static/conf/jquery.bgpos.js"></script>
+	<script type="text/javascript" src="/static/conf/jquery.reveal.js"></script>
+    <script type="text/javascript" src="/static/conf/record_log.js"></script>
+
     <title>录音标注系统</title>
 </head>
 <body>
@@ -16,14 +22,16 @@
         <div>
             <a> 回答被试编码:{{ r.studentID }}</a>
             <audio controls>
-                <source src="{{ r.filename }}" type="audio/mpeg">
+                <source src="{{ r.filepath }}" type="audio/mpeg">
             </audio>
-            <input type="text" name="score">
-            <input type="button" value="提交" onclick="submit()"/>
-
+            <form>
+                <input type="text" name="score">
+                <input type="hidden" name="studentID" value="{{ r.studentID }}"/>
+                <input type="hidden" name="task_id" value="{{ r.task_id }}"/>
+                <input type="submit" value="提交" />
+            </form>
         </div>
         <hr>
-
     {% endfor %}
 </body>
 </html>

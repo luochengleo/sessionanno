@@ -97,6 +97,7 @@ class RecordAnnotation(models.Model):
     score = models.FloatField()
 
 
+
 if __name__ == '__main__':
     task = Task(connect='hello world', task_id=0)
     task.save()
