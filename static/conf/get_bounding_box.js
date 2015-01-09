@@ -35,12 +35,13 @@ function get_character_bounding_box() {
     var message_list = $('span.character_bound').map(function (i, e) {
         var rect = e.getBoundingClientRect();
         var c = e.innerHTML;
-        var p = c.parentNode;
+        var p = e.parentNode;
         while (p != null) {
             var name = p.className;
             if (name == 'pt' || name == 'ft' || name == 'fb') {
                 break;
             }
+            p = p.parentNode;
         }
         return 'query='+currentQuery+'\tpage='+currentPageID+'\ttype='+p.className
         +'\tid='+ e.id + '\tcharacter='+ e.innerHTML
@@ -68,5 +69,5 @@ function send_message(encode_str) {
 }
 
 $(function() {
-   send_message(get_result_bounding_box());
+   send_message(get_character_bounding_box());
 });
