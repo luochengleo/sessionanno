@@ -30,7 +30,7 @@
             return true;
         }
 
-        function redirect2anno() {
+        function redirect2anno(base_url) {
             var username = document.getElementById("username2");
             var pass = document.getElementById("password2");
             if (username.value == "") {
@@ -43,7 +43,7 @@
                 return;
             }
             else if ((pass.value == "b") && (!isNaN(username.value))) {
-                window.location.href='/recordannolist/'+username.value
+                window.location.href=base_url+username.value;
                 return;
             }
             else {
@@ -87,18 +87,22 @@
 <h2 style="text-align:center"> 标注系统登陆 </h2>
 <form align=center>
     <table align="center">
-        <tr align=center>
+        <tr align="center">
             <td>用户名:</td>
             <td><input type="text" name="username2" id="username2"></td>
         </tr>
-        <tr align=center>
+        <tr align="center">
             <td>密 码:</td>
             <td><input type="password" name="password2" id="password2"></td>
         </tr>
 
-        <tr align=center>
-            <td colspan="2"><input type="button" value="登 录" onclick="redirect2anno()"/>
-                <input type="reset" value="重 置"/></td>
+        <tr align="right">
+            <td colspan="2"><input type="button" value="录音标注" onclick="redirect2anno('/recordannolist/')"/>
+            </td>
+        </tr>
+        <tr align="right">
+            <td colspan="2"><input type="button" value="相关性标注" onclick="redirect2anno('/relevanceannolist/')"/>
+            </td>
         </tr>
 
     </table>

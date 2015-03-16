@@ -192,3 +192,41 @@ function over_button_on_click() {
         window.close();
     }
 }
+
+
+function rel_anno_over_button_on_click() {
+    var result_ids = $(".rb").map(function (i, e) {return e.id;});
+    var result_urls = $(".rb h3 a").map(function (i, e) {return e.href;});
+    var scores = $(".utility_annotation input").map(function (i, e) {return e.value;});
+    var message = "";
+    var client_time = (new Date()).getTime();
+    for (var i = 0; i < result_ids.length; i++) {
+        message += "TIMESTAMP=" + client_time;
+        message += "\tANNOTATOR=" + annotatorID;
+        message += "\tTASK=" + currentTaskID;
+        message += "\tQUERY=" + currentQuery;
+        message += "\tACTION=REL_ANNOTATION";
+        message += "\tINFO:";
+        message += "\tid=" + result_ids[i];
+        message += "\tsrc=" + result_urls[i];
+        message += "\tscore=" + scores[i];
+        message += "\n";
+    }
+    if (confirm("ok?")) {
+        var encode_str = message;
+        var log_url = "http://" + server_site + ":8000/relAnnoService/";
+        $.ajax({
+            type: 'POST',
+            url: log_url,
+            data: {message: encode_str},
+            async: false,
+            complete: function (jqXHR, textStatus) {
+                //alert(textStatus + "----" + jqXHR.status + "----" + jqXHR.readyState);
+                //should we reset onbeforeunload here?
+                console.log("synchronously flush annotations!")
+            }
+        });
+        window.onbeforeunload = null;
+        window.close();
+    }
+}

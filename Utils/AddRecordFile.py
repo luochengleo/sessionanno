@@ -17,7 +17,7 @@ def importRecordFiles(path):
         for p in os.listdir(os.path.join(path, studentID)):
             idx = int(p.split('.')[0].split('_')[0])
             task_id = 0
-            if p.find('_') == -1:
+            if True:
                 random.seed(int(studentID))
                 tlist = range(1, 13)
                 random.shuffle(tlist)

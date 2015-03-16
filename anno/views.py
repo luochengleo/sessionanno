@@ -12,8 +12,10 @@ from Utils import QuestionnaireLogParser
 from Utils import QuerySatisfactionLogParser
 from Utils import SERPAnalyzer
 from Utils import RecordAnnoLogParser
+from Utils import RelAnnoLogParser
 from Utils.LogHub import LogHub
 from django.template import loader
+from django.shortcuts import render_to_response
 from django import template
 from django.views.decorators.csrf import csrf_exempt
 from django.db import transaction, models
@@ -125,6 +127,7 @@ def annolist(request, taskid):
     c = template.Context({'querynum': len(queries), 'taskid': taskid, 'querylist': queries})
     return HttpResponse(html.render(c))
 
+
 def annotation(request, taskid, query):
     try:
         studentID = request.COOKIES['studentID']
@@ -203,7 +206,7 @@ def log_query_satisfaction(request):
 @csrf_exempt
 def log_record_annotation(request):
     message = urllib.unquote(request.POST[u'message'])
-    # print message
+    print message
     RecordAnnoLogParser.insertMessageToDB(message)
     return HttpResponse('OK')
 
@@ -216,17 +219,57 @@ def debug_log(request):
     print >>fout, message.encode('utf8')
     return HttpResponse('OK')
 
+
 def recordannolist(request, annotatorID):
     respon = HttpResponse(open('templates/recordannolist.html').read())
     respon.set_cookie('annotatorID', value=annotatorID, max_age=None, expires=None, path='/', domain=None, secure=None)
     return respon
 
+
 def recordanno(request,task_id):
     t = template.Template(open('templates/recordanno.html').read())
     print task_id,type(task_id)
     rlist = list()
-    r = RecordFile.objects.filter(task_id=int(task_id))
-    task = Task.objects.get(task_id = int(task_id))
-    c = template.Context({'task':task, 'records' : list(r)})
+    r = list(RecordFile.objects.filter(task_id=int(task_id)))
+    random.seed()
+    random.shuffle(r)
+    task = Task.objects.get(task_id=int(task_id))
+    c = template.Context({'task':task, 'records' : r})
     respon = HttpResponse(t.render(c))
     return respon
+
+
+def init_query_list(request, annotatorID):
+    t = template.Template(open('templates/init_queries.html').read())
+    tlist = list(Task.objects.filter(task_id__lte=12))
+    c = template.Context({'tasks': tlist, 'tasknum': len(tlist)})
+    response = HttpResponse(t.render(c))
+    response.set_cookie('annotatorID', value=annotatorID, max_age=None, expires=None, path='/', domain=None, secure=None)
+    return response
+
+
+def rel_annotation(request, taskid, query):
+    try:
+        annotatorID = request.COOKIES['annotatorID']
+    except ValueError:
+        return HttpResponse('ERROR: UNKNOWN annotator ID')
+    lh = LogHub()
+    results = lh.getViewedResults(taskid, query)
+    # print 'len result:', len(results)
+    task = Task.objects.filter(task_id=int(taskid))[0]
+    t = template.Template(open('templates/rel_annotation.html').read())
+    c = template.Context({'resultlist': [r.content for r in results],
+                          'task_desc': task.content,
+                          'taskid': taskid,
+                          'query': query})
+    return HttpResponse(t.render(c))
+
+
+@csrf_exempt
+def log_rel_annotation(request):
+    message = urllib.unquote(request.POST[u'message'])
+    # print message
+    RelAnnoLogParser.insertMessageToDB(message)
+    return HttpResponse('OK')
+
+

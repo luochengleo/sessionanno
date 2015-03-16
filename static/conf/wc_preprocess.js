@@ -14,6 +14,7 @@
 
 // var wc_user = getCookie("userCookie");
 var studentID = getCookie("studentID");
+var annotatorID = getCookie("annotatorID");
 
 function getCookie(c_name) {
     if (document.cookie.length > 0) {

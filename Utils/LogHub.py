@@ -1,7 +1,7 @@
 #coding=utf8
 __author__ = 'luocheng'
-from anno.models import Log
 from Utils.LogParser import *
+from anno.models import *
 
 class LogHub:
     def __init__(self):
@@ -21,6 +21,7 @@ class LogHub:
                 rtr.append(q)
         return rtr
 
+
     def getClickedResults(self, studentID, taskid, query):
         clicked_logs = Log.objects.filter(studentID=studentID,
                                             task_id=taskid,
@@ -33,4 +34,15 @@ class LogHub:
 
         return SearchResult.objects.filter(query=query, rank__in=clicked_result_rank)
 
+    def getViewedResults(self, taskid, query, max_num=10):
+        goto_page_logs = Log.objects.filter(task_id=taskid, query=query)
+        pages = [get_target_page(log) for log in goto_page_logs]
+        last_page = max(pages+[1])
+        query = Query.objects.filter(content=query)[0]
+        num = min(last_page * 10, query.resultnum)
+        num = min(num, max_num)
+        print num
+        sr_list = SearchResult.objects.filter(query=query.content)
+        print len(sr_list)
+        return sorted(sr_list, key=lambda x:x.rank)[0:num]
 

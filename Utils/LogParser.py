@@ -101,6 +101,21 @@ def get_queries(users=None):
     return results
 
 
+def get_target_page(log):
+    if log.action != 'GOTO_PAGE':
+        return -1
+    info = info_patterns.search(log.content).group(1)
+    src_page = re.search(r'FROM=sogou_page_(\d{1,2})', info).group(1)
+    target_page = re.search('TO=(.*?)$', info).group(1)
+    src_page = int(src_page)
+    if target_page == 'sogou_next':
+        target_page = src_page + 1
+    else:
+        target_page = int(re.search(r'sogou_page_(\d{1,2})', target_page).group(1))
+    return target_page
+
+
+
 @transaction.commit_manually
 def insertMessageToDB(message):
     try:

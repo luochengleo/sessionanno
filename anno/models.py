@@ -97,6 +97,14 @@ class RecordAnnotation(models.Model):
     score = models.FloatField()
 
 
+class RelAnnotation(models.Model):
+    annotatorID = models.CharField(max_length=50)
+    task_id = models.IntegerField()
+    query = models.CharField(max_length=100)
+    result_id = models.CharField(max_length=50)
+    result_url = models.CharField(max_length=1024)
+    score = models.IntegerField()
+    content = models.CharField(max_length=5000)
 
 if __name__ == '__main__':
     task = Task(connect='hello world', task_id=0)

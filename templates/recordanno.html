@@ -21,8 +21,11 @@
     {% for r in records %}
         <div>
             <a> 回答被试编码:{{ r.studentID }}</a>
-            <audio controls>
-                <source src="{{ r.filepath }}" type="audio/mpeg">
+            <audio controls preload="none">
+                <source src="http://10.0.17.188{{ r.filepath }}" type="audio/mpeg">
+            </audio>
+            <audio controls preload="none">
+                <source src="http://10.0.17.188{{ r.filepath }}" type="audio/mpeg">
             </audio>
             <form>
                 <input type="text" name="score">

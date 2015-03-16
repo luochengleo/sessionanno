@@ -23,6 +23,9 @@ from anno.views import debug_log
 from anno.views import recordannolist
 from anno.views import recordanno
 from anno.views import log_record_annotation
+from anno.views import init_query_list
+from anno.views import rel_annotation
+from anno.views import log_rel_annotation
 
 urlpatterns = patterns('',
     # Examples:
@@ -50,5 +53,9 @@ urlpatterns = patterns('',
     (r'^SERP/(\d{1,2})/(.*?)/(\d{1,2})/$', show_page),
     (r'^recordannolist/(\d{10})/$', recordannolist),
     (r'^recordanno/(\d{1,2})/$', recordanno),
-    (r'^RecordAnnoService/$', log_record_annotation)
+    (r'^RecordAnnoService/$', log_record_annotation),
+
+    (r'^relevanceannolist/(\d{10})/$', init_query_list),
+    (r'^relevanceanno/(\d{1,2})/(.*?)/$', rel_annotation),
+    (r'^relAnnoService/$', log_rel_annotation),
 )
