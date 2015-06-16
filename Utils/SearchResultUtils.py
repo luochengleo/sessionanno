@@ -4,6 +4,8 @@ from anno.models import SearchResult
 from anno.models import Task
 from LogParser import get_queries
 from django import template
+from Utils import SearchResultHub
+import urllib
 import re
 
 
@@ -60,6 +62,30 @@ def output_to_html_file():
         fout = open('./data/single_result/%d.html' % r[0], 'w')
         print >>fout, str(r[1].encode('utf8')).replace('\n', '')
         fout.close()
+
+
+def get_anno_page(taskid, query, pageid):
+    srh = SearchResultHub()
+
+    results = srh.getResult(query, 10*(int(pageid)-1), 10)
+    results_count = srh.getCount(query)
+    max_pageid = results_count / 10
+
+    t = template.Template(open('templates/out_page.html').read())
+    next_pageid = ''
+    if int(pageid) < max_pageid:
+        next_pageid = str(int(pageid)+1)
+    page_str = ''.join([str(x) for x in range(1, max_pageid+1)])
+    c = template.Context({'resultlist': result_list,
+                          'taskid': taskid,
+                          'query': query,
+                          'pageid': pageid,
+                          'page_str': page_str,
+                          'next_pageid': next_pageid})
+    # fout = open('temp/test.html','w')
+    # fout.write(t.render(c).decode('utf8','ignore').encode('utf8'))
+    # fout.close()
+    return t.render(c)
 
 
 #output_to_text_file()
