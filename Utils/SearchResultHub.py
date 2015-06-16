@@ -16,7 +16,7 @@ class SearchResultHub:
 
     def getResult(self, query, beginIndex, number):
 
-        print 'searching in database'
+        #print 'searching in database'
 
         queries = Query.objects.filter(content=query)
 
@@ -69,7 +69,7 @@ class SearchResultHub:
 
         else:
             sr_list = SearchResult.objects.filter(query=query)
-            print 'ENOUGH RESULTS', beginIndex, number, len(sr_list)
+            #print 'ENOUGH RESULTS', beginIndex, number, len(sr_list)
 
             return sorted(sr_list, key=lambda x:x.rank)[beginIndex:beginIndex+number]
 

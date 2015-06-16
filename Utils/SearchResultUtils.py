@@ -4,7 +4,8 @@ from anno.models import SearchResult
 from anno.models import Task
 from LogParser import get_queries
 from django import template
-from Utils import SearchResultHub
+from Utils.SearchResultHub import SearchResultHub
+from collections import defaultdict
 import urllib
 import re
 
@@ -24,7 +25,9 @@ def get_results(query, num=5):
 
 
 def filter_scripts(html):
-    return re.sub(r'initEndorseShow2\((.*?)\);', '', html)
+    html = re.sub(r'initEndorseShow2\((.*?)\);', '', html)
+    html = html.replace('***', '')
+    return html
 
 
 def get_html_strings(num=5):
@@ -71,12 +74,16 @@ def get_anno_page(taskid, query, pageid):
     results_count = srh.getCount(query)
     max_pageid = results_count / 10
 
-    t = template.Template(open('templates/out_page.html').read())
+    t = template.Template(open('templates/out_anno_page.html').read())
     next_pageid = ''
     if int(pageid) < max_pageid:
         next_pageid = str(int(pageid)+1)
     page_str = ''.join([str(x) for x in range(1, max_pageid+1)])
+    #result_list = SERPAnalyzer.add_character_bounding_box(results)
+    result_list = [r.content for r in results]
+    task = Task.objects.get(task_id=int(taskid))
     c = template.Context({'resultlist': result_list,
+                          'task_desc': task.content,
                           'taskid': taskid,
                           'query': query,
                           'pageid': pageid,
@@ -85,8 +92,30 @@ def get_anno_page(taskid, query, pageid):
     # fout = open('temp/test.html','w')
     # fout.write(t.render(c).decode('utf8','ignore').encode('utf8'))
     # fout.close()
-    return t.render(c)
+    return filter_scripts(t.render(c))
 
 
+def generate_anno_page_by_task():
+    fin = open('data/page_anno/queries.txt', 'r')
+    task2html = defaultdict(list)
+    task2info = defaultdict(list)
+
+    for idx, line in enumerate(fin):
+        print idx
+        task, query, scores = line.split('\t')
+        task2info[task].append((idx, line.rstrip()))
+        html = get_anno_page(task, query, "1")
+        task2html[task].append((idx, str(html.encode('utf8')).replace('\n', '')))
+
+        assert len(task2html) == len(task2info)
+
+    for task in task2html:
+        fout = open('data/page_anno/%s_info.txt' % task, 'w')
+        for idx, info in task2info[task]:
+            print >>fout, '%d\t%s' % (idx, info)
+        fout = open('data/page_anno/%s_html.txt' % task, 'w')
+        for idx, html in task2html[task]:
+            print >>fout, '%d***%sGEOGEO 120.0 -40.0 5.0' % (idx, html)
+        print >>fout, ''
 #output_to_text_file()
-output_to_html_file()
+#output_to_html_file()

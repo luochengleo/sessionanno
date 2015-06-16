@@ -14,6 +14,7 @@
     <link rel="dns-prefetch" href="http://img03.sogoucdn.com/">
     <link rel="dns-prefetch" href="http://img04.sogoucdn.com/"> <link rel="shortcut icon" href="http://www.sogou.c../../../../static/images/logo/new/favicon.ico?nv=1&v=2" type="image/x-icon">
     <link href="/static/conf/button.css" type="text/css" rel="stylesheet">
+    <link href="/static/conf/annotation.css" type="text/css" rel="stylesheet">
     <!-- global variables: current task id, current query -->
     <script type="text/javascript">
         currentTaskID = "{{ taskid }}";
@@ -27,7 +28,6 @@
 	<script type="text/javascript" src="/static/conf/jquery.reveal.js"></script>
 	<script type="text/javascript" src="/static/conf/jquery.raty.js"></script>
 	<script type="text/javascript" src="/static/conf/jquery.raty.min.js"></script>
-    <script type="text/javascript" src="/static/conf/get_bounding_box.js"></script>
     <title>搜狗搜索</title>
 
 
@@ -3925,6 +3925,23 @@
 </head>
 <body class=" vr1024">
 
+<div class="annotation_header">
+<h1>
+    搜索结果标注
+</h1>
+<p style="color: orangered; font-size:16pt">标注说明：请针对当前的 任务, 查询 和 搜索结果，
+标注搜索结果页面质量（必要时，你需要点击并浏览结果以做出判断）：
+<br>
+1分 查询与任务不相关，结果对完成任务没有帮助
+<br>
+2分 查询与任务部分相关，结果对完成任务有一定帮助
+<br>
+3分 查询与任务较为相关，结果对完成任务有较大帮助
+<br>
+4分 查询与任务高度相关，基于返回结果能很好的完成任务
+<br>
+<p style="color: blue; font-size:18pt">当前任务:{{ task_desc }}</p>
+</div>
 
 <div class="wrap">
 <!--[if IE 6]><style type="text/css">.topbar, .res-logn-ico {display:none}</style><![endif]-->
@@ -4011,6 +4028,7 @@
 <div id="main" class="main">
 
 
+
 <div> <div class="results">
 
 <style>
@@ -4087,71 +4105,5 @@
 
 </div>
 
-
-
-<!--
-<div class="p" id="pagebar_container">
-    <span>1</span>
-    <a
-        id="sogou_page_2"
-        href="http://www.sogou.com/web?query=%E5%BC%80%E5%BF%83%E4%B9%90%E5%9B%AD+%E7%BE%8A%E9%A9%BC&sut=7854&lkt=1%2C1415606631196%2C1415606631196&sst0=1415606634628&cid=&page=2&ie=utf8&p=40040100&dp=1&w=01029901&dr=1">2</a>
-    <a
-        id="sogou_page_3"
-        href="http://www.sogou.com/web?query=%E5%BC%80%E5%BF%83%E4%B9%90%E5%9B%AD+%E7%BE%8A%E9%A9%BC&sut=7854&lkt=1%2C1415606631196%2C1415606631196&sst0=1415606634628&cid=&page=3&ie=utf8&p=40040100&dp=1&w=01029901&dr=1">3</a>
-    <a
-        id="sogou_page_4"
-        href="http://www.sogou.com/web?query=%E5%BC%80%E5%BF%83%E4%B9%90%E5%9B%AD+%E7%BE%8A%E9%A9%BC&sut=7854&lkt=1%2C1415606631196%2C1415606631196&sst0=1415606634628&cid=&page=4&ie=utf8&p=40040100&dp=1&w=01029901&dr=1">4</a>
-    <a
-        id="sogou_page_5"
-        href="http://www.sogou.com/web?query=%E5%BC%80%E5%BF%83%E4%B9%90%E5%9B%AD+%E7%BE%8A%E9%A9%BC&sut=7854&lkt=1%2C1415606631196%2C1415606631196&sst0=1415606634628&cid=&page=5&ie=utf8&p=40040100&dp=1&w=01029901&dr=1">5</a>
-    <a
-        id="sogou_page_6"
-        href="http://www.sogou.com/web?query=%E5%BC%80%E5%BF%83%E4%B9%90%E5%9B%AD+%E7%BE%8A%E9%A9%BC&sut=7854&lkt=1%2C1415606631196%2C1415606631196&sst0=1415606634628&cid=&page=6&ie=utf8&p=40040100&dp=1&w=01029901&dr=1">6</a>
-    <a
-        id="sogou_page_7"
-        href="http://www.sogou.com/web?query=%E5%BC%80%E5%BF%83%E4%B9%90%E5%9B%AD+%E7%BE%8A%E9%A9%BC&sut=7854&lkt=1%2C1415606631196%2C1415606631196&sst0=1415606634628&cid=&page=7&ie=utf8&p=40040100&dp=1&w=01029901&dr=1">7</a>
-    <a
-        id="sogou_page_8"
-        href="http://www.sogou.com/web?query=%E5%BC%80%E5%BF%83%E4%B9%90%E5%9B%AD+%E7%BE%8A%E9%A9%BC&sut=7854&lkt=1%2C1415606631196%2C1415606631196&sst0=1415606634628&cid=&page=8&ie=utf8&p=40040100&dp=1&w=01029901&dr=1">8</a>
-    <a
-        id="sogou_page_9"
-        href="http://www.sogou.com/web?query=%E5%BC%80%E5%BF%83%E4%B9%90%E5%9B%AD+%E7%BE%8A%E9%A9%BC&sut=7854&lkt=1%2C1415606631196%2C1415606631196&sst0=1415606634628&cid=&page=9&ie=utf8&p=40040100&dp=1&w=01029901&dr=1">9</a>
-    <a
-        id="sogou_next"
-        href="http://www.sogou.com/web?query=%E5%BC%80%E5%BF%83%E4%B9%90%E5%9B%AD+%E7%BE%8A%E9%A9%BC&sut=7854&lkt=1%2C1415606631196%2C1415606631196&sst0=1415606634628&cid=&page=2&ie=utf8&p=40040100&dp=1&w=01029901&dr=1"
-        class="np">下一页 &gt;</a>
-
-<img style="position:absolute;top:-1px" src="../../../../static/fav.ico" height="0" border="0" width="0">
-<img src="../../../../static/pv.gif" width="1" height="1" style="position:absolute;top:-1px">
-</div>
--->
-
-<!--[if IE 6]><style type="text/css">.topbar, .res-logn-ico {display:none}</style><![endif]-->
-
-
-<!--STATUS total 10 time 157 page 6 maxEnd 82 totalItems 442-->
-<!--real_pageno:1-->
-<!--zly-->
-
-<div class="p" id="pagebar_container">
-    {% for i in page_str %}
-        {% ifequal pageid i %}
-            <span>{{ pageid }}</span>
-        {% else %}
-            <a
-                id="sogou_page_{{ i }}"
-                class="pagination"
-                href="/search/{{ taskid }}/{{ query }}/{{ forloop.counter }}/">{{ forloop.counter }}</a>
-        {% endifequal %}
-    {% endfor %}
-    {% if next_pageid %}
-        <a
-            id="sogou_next"
-            href="/search/{{ taskid }}/{{ query }}/{{ next_pageid }}/"
-            class="pagination np">下一页 &gt;</a>
-    {% endif %}
-<img style="position:absolute;top:-1px" src="../../../../static/fav.ico" height="0" border="0" width="0">
-<img src="../../../../static/pv.gif" width="1" height="1" style="position:absolute;top:-1px">
-</div>
 </body>
 </html>
